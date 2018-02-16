@@ -1,0 +1,23 @@
+Team Name: aMAZEingGames
+
+Team Members: Justin Velvick, Adam Casey, Parker Eischen, Vladimir Zhdanov, Chelsea Buchler, Sol Pazos
+
+Project Description: A flash game/mind puzzles website that will allow players to log in and keep track of their scores, using a database to store the high scores. The games will range from mindbender puzzles such as mazes to recreational score-chasing games. The website will allow a user to keep an account, keep track of their score and compare their scores to the high scores in the database.
+
+The website the games are hosted on will consist of categories housing the games, a login page to access your account, a homepage with news and information about the games, and information about game improvements. The database will host all of the scores in descending order, with the highest score on top.
+
+Vision Statement: Our vision is to create a fun and easy to navigate website that entertains users.
+
+Motivation: Our motivation is to learn how to use mySQL, Java, and HTML, and understand how to connect them together to apply them to a wide spread of simple and complex games.
+
+Risk: The largest risk of this project is the timing of this project; if we do not stay on top of the project, there’s the risk of it getting away from us. If we attempt to take the sprints too quickly, the project could not work or turn out to be sloppy.
+
+Risk Mitigation: To handle the risks, we’ll clear channels of communication and make sure to have predetermined meetings scheduled when necessary. Openness to learn new development tools and a cohesive team mentality will be key. 
+
+Version Control: Github will be used as the main version control method. We will use Git to collaborate and merge our code into our final project. The git repository will hold all of our files including HTML, CSS, ReadMe text, as well as our completed design. We will upload(push) after each installment and have versions for each added sprint. 
+
+Development Method: Our development method will be Agile. Each small task will be in the style of a sprint, with an emphasis on modular tasks. This will allow for us to complete as many tasks as possible, but maintain a level of quality. Due to the nature of adding smaller games to the website, we can consider each game a sprint.
+
+Collaboration Tool: Trello and Discord will be our main collaboration tools.
+
+Proposed Architecture: The front end will use a flavor of Java called p5.js. The back end will use mySQL. To create the website, we’ll be using HTML and CSS.
