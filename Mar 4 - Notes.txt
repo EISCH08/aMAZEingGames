@@ -1,0 +1,23 @@
+Group Meeting 2:
+
+Task Goal: Milestone 2
+
+Our first task was figuring out our project requirements. We had already set up Trello as our project management software, so we jumped directly to figuring out our higher level project requirements.
+
+We discussed what we wanted the games to look like, how many games we wanted to do, and what sort of user profiles and log-in systems we wanted. We set up as many project requirements as we could think of, and agreed to add more as we worked on the remainder of the milestone.
+
+We decided on our meeting times and places, and what we wanted to do for each meeting — a sprint every two weeks, with a weekly meeting to check-in on our tasks.
+
+We decided how we want the demo to look: an HTML framework, a working game, and the database. The database needs to keep track of: high scores and user info.
+
+We decided on the number of sprints we would be running: 4, to follow the remaining 8 weeks.
+
+We set up our Trello with our first sprint, and agreed to use cards to track our sprints.
+
+Pages for the HTML website: Homepage, profile, page for each game. The main page should have a hub with links to games.
+
+We had an agile meeting to discuss what we accomplished since the last meeting: how to stay in contact in the best possible way, what days worked best for us as meeting times, and when we wanted to have meetings. We made sure that our git was functioning properly, and then moved on to what we wanted to accomplish in the future. In the future, we decided on our first sprint, and our main focus: the HTML framework for the website, and the beginnings of a game. We agreed that database work may take the longest, and that it may bleed over into the next sprint.
+
+Difficulties we might face: Everyone completing their individual tasks, figuring out how to connect databases to the website, and making sure that we can find the time to meet with everyone in the group.
+
+We discussed what went well in this meeting and our current sprint, as well as setting up the framework for the next sprint. Getting practice in sprint retrospectives helped us to figure out what would be expected from us in future meetings.
