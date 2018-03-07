@@ -1,32 +1,29 @@
 var s;
-var scl = 20;
+var sizeScale = 25;
+var speedScale = sizeScale;
 
 var food;
 
 function setup() {
   createCanvas(600, 600);
   s = new Snake();
-  frameRate(10);
-  pickLocation();
+  frameRate(15);
+  spawnFood();
 
 }
 
-function pickLocation() {
-  var cols = floor(width/scl);
-  var rows = floor(height/scl);
+function spawnFood() {
+  var cols = floor(width/sizeScale);
+  var rows = floor(height/sizeScale);
   food = createVector(floor(random(cols)), floor(random(rows)));
-  food.mult(scl);
-}
-
-function mousePressed() {
-  s.total++;
+  food.mult(sizeScale);
 }
 
 function draw() {
   background(51);
 
   if (s.eat(food)) {
-    pickLocation();
+    spawnFood();
   }
   s.death();
   s.update();
@@ -34,7 +31,7 @@ function draw() {
 
 
   fill(255, 0, 100);
-  rect(food.x, food.y, scl, scl);
+  rect(food.x, food.y, sizeScale, sizeScale);
 }
 
 
@@ -55,10 +52,10 @@ function keyPressed() {
   }
 
   else if (keyCode === DOWN_ARROW) {
-    if(s.y === height-scl && s.yspeed === 1){ //support for if snake is at edge and user tries to change speed to out of map
+    if(s.y === height-sizeScale && s.yspeed === 1){ //support for if snake is at edge and user tries to change speed to out of map
       s.direction(-1, 0); //change speed to left
     }
-    else if (s.y === height-scl && s.xspeed != 0){
+    else if (s.y === height-sizeScale && s.xspeed != 0){
     s.direction(s.xspeed, 0); //change nothing about the speed if moving horizontal on border and user tries to move out of the map
     }
     else{ //user is breaking no rules, key acts normal
