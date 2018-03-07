@@ -1,0 +1,13 @@
+#body_bg
+{ 
+background-color:#7F8C8D; 
+}
+
+#login-form{ 
+
+background:#FFFFFF; 
+border: 3 px solid #eeeee; 
+padding:9px 9px;
+ width:300px; 
+ border-radius:5px; 
+}
