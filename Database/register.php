@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 
     if ($mysqli->query($sql) == true) {
       $_SESSION['message'] = "Registration Successful! Added $username to the database";
-      header("location: index.php");
+      header("location: ../website/webpage.html");
       # code...
     }
 
