@@ -1,0 +1,12 @@
+Group Meeting 3
+Members present: Chelsea, Vlad, Parker, Sol
+
+This week, we discussed what we had worked on in the past week. We've gotten a start on the layout of the website, created a basic user authentication and creation system, and created a basic snake game.
+
+Although there are improvements that are needed to be made, we have a few goals in mind for this week:
+- Determine exactly what will be presented to the TA for milestone 3 later this week.
+- Integrate the login system with the current website design
+- Combine the user registration and user create systems into one file/location.
+- Possibly look into changing authentication from using PHP to Node.js
+- Add the snake game to the website
+
