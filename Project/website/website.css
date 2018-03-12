@@ -79,7 +79,7 @@
 #usernav img
 {
   border-style: solid;
-  border: 10px;
+  border: 0px;
   color: black;
 }
 
@@ -104,4 +104,27 @@ table#usertable {
   background-color: #000000;
   height:38px;
   text-align: right;
+}
+
+#gamescores {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+#gamescores td, #gamescores th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#gamescores tr:nth-child(even){background-color: #f2f2f2;}
+
+#gamescores tr:nth-child(odd){background-color: #EBF5FB;}
+
+#gamescores th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
 }
