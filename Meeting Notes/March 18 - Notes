@@ -1,0 +1,25 @@
+Meeting notes for March 18th sprint
+
+Members present: Vlad, Chelsea, Sol, Parker, Adam
+
+Database Design Deadline =  April 1st
+  - Make model of database and submit on Moodle
+  - 2 tables: User info table, scores table that will hold the high scores of each game
+  - Once someone is logged in, the website needs to change to something that is more personalized
+    - Change everything to Node.js
+  - Figure out the design of our databse (what should the tables look like)
+
+Updates to project:
+  - Created a working register page (log in)
+  - Integrated games into the website
+  - Working HTML page
+  - Paddle game created
+
+Things to work on for next sprint (April 8th):
+  - Create graphic/thumbnail for each game
+  - Fish out the "counter"/score and be able to get it into our database 
+  - Export the score for each player on their profile that displays when others visit their page
+  - Put high scores at the bottom of each game page
+  - Get Database Design done before the deadline on April 1st
+ 
+
