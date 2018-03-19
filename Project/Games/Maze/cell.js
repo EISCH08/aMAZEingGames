@@ -43,14 +43,24 @@ function Cell(i, j){ //i is the column, j is the row
          var rand = floor(random(0, neighbors.length));
          return neighbors[rand];
       }
-      else {return undefined;} //no new neighbor to vist
+      else {//no new neighbor to vist
+         return undefined;
+      }
+   };
+
+   this.highlight = function(){
+      var x = this.x*size1;
+      var y = this.y*size1;
+      noStroke();
+      fill(0,150,100,100);
+      rect(x, y, size1, size1);
    };
 
 
    this.show = function() {
       var x = this.x*size1; //ie co1l 2 will net an x position of 2 times the size of each square (putting it in the second square on the grid)
       var y = this.y*size1; //same here
-      stroke(200);
+      stroke(255);
 
       if(this.walls[0]){
          line(x,y, x+size1, y);//top
@@ -66,6 +76,7 @@ function Cell(i, j){ //i is the column, j is the row
       }
 
       if(this.visited){
+         noStroke();
          fill(255,0,255, 100);
          rect(x, y, size1, size1);
       }
