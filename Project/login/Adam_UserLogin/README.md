@@ -1,3 +1,4 @@
+
 Tutorial for new-user registration and authentication comes from [these videos by Chris Courses](https://www.youtube.com/watch?v=gYjHDMPrkWU&list=PLpPnRKq7eNW3Qm2OfoJ3Hyvf-36TulLDp)
 
 Ongoing list of npm installs that were needed (MAKE SURE YOU ARE IN PROJECT DIRECTORY):
@@ -5,6 +6,7 @@ Ongoing list of npm installs that were needed (MAKE SURE YOU ARE IN PROJECT DIRE
 * `sudo apt-get install wireless-tools`
 * `sudo apt-get install nodejs`
 * `sudo chmod -R 777/usr/lib/nodejs`
+These `webpack` install commands *should* create a `node_modules` folder inside of your project directory
 * `npm install webpack`
 * `npm install webpack-cli -D`
 * `npm install --save-dev webpack`
