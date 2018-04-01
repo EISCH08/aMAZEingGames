@@ -5,7 +5,7 @@ Ongoing list of npm installs that were needed (MAKE SURE YOU ARE IN PROJECT DIRE
 * `sudo apt-get update`
 * `sudo apt-get install wireless-tools`
 * `sudo apt-get install nodejs`
-* `sudo chmod -R 777/usr/lib/nodejs`
+* `sudo chmod -R 777/usr/lib/nodejs`  
 These `webpack` install commands *should* create a `node_modules` folder inside of your project directory
 * `npm install webpack`
 * `npm install webpack-cli -D`
@@ -33,7 +33,7 @@ var connection = mysql.createConnection({
   socketPath: '/var/run/mysqld/mysqld.sock'
 })
 ```
-Make sure you create a **.env** file inside of your **views** directory. I left it out of this repo because it holds your database password. The **.env** file should look something similar to this:  
+Make sure you create a **.env** file inside of your **views** directory (or edit the **.env.default** file but just make sure to rename it to **.env**). I left it out of this repo because it holds your database password. The **.env** file should look something similar to this:  
 ```
 NODE_ENV=DEVELOPMENT
 
