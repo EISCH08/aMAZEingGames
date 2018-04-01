@@ -1,5 +1,3 @@
-Welcome to the Software-Dev-Methods-Tools wiki!
-
 Tutorial for new-user registration and authentication comes from [these videos by Chris Courses](https://www.youtube.com/watch?v=gYjHDMPrkWU&list=PLpPnRKq7eNW3Qm2OfoJ3Hyvf-36TulLDp)
 
 Ongoing list of npm installs that were needed (MAKE SURE YOU ARE IN PROJECT DIRECTORY):
