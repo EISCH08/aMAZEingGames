@@ -1,3 +1,26 @@
+<?php> 
+include '.../Database/db.php';
+if(isset($_POST['action']))
+{          
+
+    if($_POST['action']=="login")
+    {
+        $email = mysqli_real_escape_string($connection,$_POST['email']);
+        $password = mysqli_real_escape_string($connection,$_POST['password']);
+        $strSQL = mysqli_query($connection,"select name from users where email='".$email."' and password='".md5($password)."'");
+        $Results = mysqli_fetch_array($strSQL);
+        if(count($Results)>=1)
+        {
+            $message = $Results['username']." Login Sucessfully!!";
+            header("location: ../website/webpage.html");
+        }
+        else
+        {
+            $message = "Invalid email or password!!";
+        }        
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
