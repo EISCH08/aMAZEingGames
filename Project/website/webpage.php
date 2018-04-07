@@ -1,3 +1,28 @@
+<?php
+include '../Database/db.php';
+if(isset($_POST['action']))
+{          
+
+    if($_POST['action']=="login")
+    {
+        $username = mysqli_real_escape_string($mysqli,$_POST['username']);
+        $password = mysqli_real_escape_string($mysqli,$_POST['password']);
+        $strSQL = mysqli_query($connection,"SELECT * FROM accounts WHERE username='".$email."' and password='".md5($password)."'");
+        $Results = mysqli_fetch_array($strSQL);
+        if(count($Results)>=1)
+        {
+            $message = $Results['username']." Login Sucessfully!!";
+            
+        }
+        else
+        {
+            $message = "Invalid email or password!!";
+        }        
+    }
+}
+?>
+
+
 <!doctype html>
 <!--Main page of the website. Authors: Chelsea, Justin, Adam, Vlad, Parker-->
 
@@ -16,9 +41,9 @@
 With assistance from https://csswizardry.com/2011/01/create-a-centred-horizontal-navigation/-->
 <div id="nav">
   <ul>
-  <li><a href="webpage.html">Home</a></li>
+  <li><a href=LINK>Home</a></li>
   <li><a href=LINK>User</a></li>
-  <li><a href="highscores.html">High Scores</a></li>
+  <li><a href=LINK>High Scores</a></li>
   <li><a href=LINK>ETC</a></li>
   <div id="nav2"><li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></li></div>
 </ul>
@@ -26,9 +51,9 @@ With assistance from https://csswizardry.com/2011/01/create-a-centred-horizontal
 
 <div id="id01" class="modal">
 
-  <form class="modal-content animate" action="/action_page.php">
+  <form class="modal-content animate"  method="post">
     <div class="container">
-      <label for="uname"><b>Username</b></label>
+      <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
       <label for="psw"><b>Password</b></label>
@@ -43,11 +68,11 @@ With assistance from https://csswizardry.com/2011/01/create-a-centred-horizontal
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
       <span class="psw"><a href="../database/register.php">Don't have an account?</a></span>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      
     </div>
   </form>
-</div>
-<script>
+</div
+<script type="javascript">
   var modal = document.getElementById('id01');
   window.onclick = function(event) {
       if (event.target == modal) {
@@ -61,7 +86,7 @@ the centered userpic, which I like too-->
 
 <div id="usernav">
   <ul>
-    <li><a href=webpage.html><img src=https://i.imgur.com/FDhE9AF.png border=0px></a></li>
+    <li><a href=LINK><img src=https://i.imgur.com/FDhE9AF.png border=10px></a></li>
   </div>
 
 <!--These are the game links-->
@@ -72,33 +97,10 @@ the centered userpic, which I like too-->
 <br>
 <br>
 <br>
-<center><table id="gamescores">
-  <tr>
-    <th>Game</th>
-    <th>Score</th>
-    <th>Player</th>
-  </tr>
-  <tr>
-    <td>Maze Game</td>
-    <td>10000 points</td>
-    <td>Vlad</td>
-  </tr>
-  <tr>
-    <td>Snake Game</td>
-    <td>500 points</td>
-    <td>Justin</td>
-  </tr>
-  <tr>
-    <td>GAME 3</td>
-    <td>100 points</td>
-    <td>Adam</td>
-  </tr>
-  <tr>
-    <td>GAME 4</td>
-    <td>7777 points</td>
-    <td>Parker</td>
-  </tr>
-</table>
+<div id="gamelinks">
+<center><a href="mazegame.html"><img src=https://i.imgur.com/yWINN7P.png></a>
+  <a href=LINK><img src=https://i.imgur.com/yWINN7P.png></a>
+  <a href=LINK><img src=https://i.imgur.com/yWINN7P.png></a>
 </center>
 </div>
 
