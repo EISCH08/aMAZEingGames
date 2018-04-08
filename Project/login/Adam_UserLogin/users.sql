@@ -4,7 +4,7 @@
    Username       varchar(20)    default NULL;
    Useremail      varchar(50)    default NULL;
    Userpassword   binary(100)    default NULL;
-   UserID         varchar(100)   default NULL;
+   UserID         varchar(100)   default NOT NULL;
    PRIMARY KEY  (UserID)
    )
    CHARACTER SET utf8 COLLATE utf8_general_ci;
