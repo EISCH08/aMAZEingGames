@@ -1,18 +1,39 @@
 var cols,rows;
-var size1 = 40;
-var grid = [];
+var size1 = 60;
+var grid;
 var user; //0 is generating the maze, once done player = 1
 //keeps player locked out from controls until maze is done generating
 var current;
 var stack = [];
-var exit = 0; //will changed to 1 once an exit is made
+var exit; //will changed to 1 once an exit is made
+
+var timer; //visual header element for timer
+var timeTick; //ticks each frame refresh
+var time; //time in seconds after correcting for framerate
+var frames; //current framerate of game
+
+var victoryMessage; //appears when user wins
 
 function setup(){
    createCanvas(600,600);
+   timer = createElement('h1', 'Time: ' + 0);
+   timer.position(610,0);
    cols = floor(width/size1); //x cols exist
    rows = floor(height/size1);//x rows exist
-   frameRate(40);
+   reset();
+}
+
+function reset(){
+   timeTick = 0;
+   time = 0;
+   timer.html('Time: ' + time);
+
+   exit = 0;
    user = new Player();
+   grid = [];
+
+   frames = 40;
+   frameRate(frames);
 
    for (var j = 0; j < rows; j++){
       for(var i = 0; i < cols; i++){
@@ -21,14 +42,19 @@ function setup(){
          grid.push(newcell);
       }
    }
-
    current = grid[0];
 }
 
 function draw(){
    background(51);
    if(user.players == 1){ ////switch from maze generation code to player code
-      frameRate(10);
+      frames = 10;
+      frameRate(frames);
+      timeTick = timeTick+1;
+      if(timeTick%frames == 0){
+         time = time+1;
+      }
+      timer.html('Time: ' + time);
       user.show();
    }
 
@@ -85,7 +111,12 @@ function draw(){
 }
 
 function keyPressed() {
-   console.log(current);
+   if(keyCode === ENTER){
+      victoryMessage.remove();
+      loop();
+
+   }
+
   if (keyCode === UP_ARROW && user.players == 1) {
      if(current.walls[0]){
         current = current;
@@ -119,7 +150,10 @@ function keyPressed() {
       }
   }
   if(current.exit){
-     console.log('you win');
-     current = grid[0];
+     victoryMessage = createElement('h1', 'You Win!  ' + time + ' seconds! Press Enter to restart');
+     victoryMessage.position(10,250);
+     noLoop();
+     reset();
+
  }
 }
