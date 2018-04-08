@@ -1,0 +1,16 @@
+Meeting - 4/08/18
+Members present: Chelsea, Viad, Parker, Adam, Justin
+
+This meeting we worked on milestone 4, as well as discussing what needed to be done for the next few weeks as our next “sprint” objective.
+
+We wanted to make sure that the HTML webpages work on everyone’s computers, and also that the database works with everyone’s computers. We discussed reworking the HTML for the website to make sure that it works with the database that has been created.
+
+We created the scripts for milestone 4 to show a populated database.
+
+Our next tasks are:
+
+- Making the website work with the database
+- Retrieving game scores from the game and populating our database with them
+- Frogger game
+- Implement multiple games on the website
+- Clean up the GitHub 
