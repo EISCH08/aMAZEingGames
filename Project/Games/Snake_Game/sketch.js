@@ -3,9 +3,22 @@ var sizeScale = 25;
 var speedScale = sizeScale;
 
 var food;
+var scoreCounter; //visual counter on screen
+var score; //keeps track of the score
+
+var startScreen;
+var deathScreen;
 
 function setup() {
   createCanvas(600, 600);
+
+  score = 1;
+  scoreCounter = createElement('h1', 'Snake Length: ' + 1);
+  scoreCounter.position(600, 0);
+
+  startScreen = createElement('h1', 'Press UP arrow key to start!');
+  startScreen.position(100, 200);
+
   s = new Snake();
   frameRate(15);
   spawnFood();
@@ -23,6 +36,8 @@ function draw() {
   background(51);
 
   if (s.eat(food)) {
+     score++;
+    scoreCounter.html('Snake Length: ' + score);
     spawnFood();
   }
   s.death();
@@ -35,10 +50,21 @@ function draw() {
 }
 
 
-
-
-
 function keyPressed() {
+   if(startScreen){
+      if(keyCode === UP_ARROW){
+         startScreen.remove();
+         loop();
+      }
+   }
+   if(deathScreen){
+      if(keyCode === ENTER){
+         deathScreen.remove();
+         startScreen = createElement('h1', 'Press UP arrow key to start!');
+         startScreen.position(100, 200);
+         score = 1;
+      }
+   }
   if (keyCode === UP_ARROW) {
     if(s.y === 0 && s.yspeed === -1){ //support for if snake is at edge and user tries to change speed to out of mapn
       s.direction(1, 0); //change speed to right
