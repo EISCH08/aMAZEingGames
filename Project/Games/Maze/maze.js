@@ -14,27 +14,52 @@ var frames; //current framerate of game
 
 var victoryMessage; //appears when user wins
 
+var exportBox; //textbox to transfer to SQL
+var exportButton;
+
 function setup(){
    createCanvas(600,600);
+   //creating timer within JS
    timer = createElement('h1', 'Time: ' + 0);
    timer.position(610,0);
+
+   //fetching input element from html and setting up style
+   exportBox = select('#output')
+   exportBox.style('position', 'absolute');
+   exportBox.style('top', '300px');
+   exportBox.style('left', '250px');
+   exportBox.style('z-index', '-1'); //hiding input box
+   //fetching submit button from html
+   exportButton = select('#submit');
+   exportButton.style('position', 'absolute');
+   exportButton.style('top', '300px');
+   exportButton.style('left', '250px');
+   exportButton.style('z-index', '-1'); //hiding button
+
    cols = floor(width/size1); //x cols exist
    rows = floor(height/size1);//x rows exist
    reset();
 }
 
 function reset(){
+   //button starts under canvas
+
+
+   //reset clock
    timeTick = 0;
    time = 0;
    timer.html('Time: ' + time);
 
+   //reset game elements
    exit = 0;
    user = new Player();
    grid = [];
 
+   //reset frames for maze generation
    frames = 40;
    frameRate(frames);
 
+   //create the new cells
    for (var j = 0; j < rows; j++){
       for(var i = 0; i < cols; i++){
          var newcell = new Cell(i,j); //ie send col 2 row 5
@@ -112,9 +137,11 @@ function draw(){
 
 function keyPressed() {
    if(keyCode === ENTER){
+     //get rid of victory message
       victoryMessage.remove();
+      //place button back under canvas
+      exportButton.style('z-index', '-1');
       loop();
-
    }
 
   if (keyCode === UP_ARROW && user.players == 1) {
@@ -150,10 +177,12 @@ function keyPressed() {
       }
   }
   if(current.exit){
-     victoryMessage = createElement('h1', 'You Win!  ' + time + ' seconds! Press Enter to restart');
-     victoryMessage.position(10,250);
+     victoryMessage = createElement('h1', 'You won in ' + time + ' seconds! <br> -Submit your score below <br> Or press Enter to restart');
+     victoryMessage.position(150,100);
+     //removed once KEY_CODE Enter is pressed
+     exportButton.style('z-index', '0');
+     exportBox.value(time);
      noLoop();
      reset();
-
  }
 }
