@@ -26,13 +26,13 @@ function Snake() {
       var pos = this.tail[i];
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
-        deathScreen = createElement('h1', 'You Lose! Your score is ' + score + ' | Press Enter to play again.');
-        deathScreen.position(75, 200);
         this.total = 0;
         this.tail = [];
         noLoop();
+        return true;
       }
     }
+    return false;
 };
 
    this.checkWall = function(){

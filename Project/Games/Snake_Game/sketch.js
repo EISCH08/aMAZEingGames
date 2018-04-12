@@ -5,24 +5,46 @@ var speedScale = sizeScale;
 var food;
 var scoreCounter; //visual counter on screen
 var score; //keeps track of the score
-
+var player; //0 if player is dead 1 if alive
 var startScreen;
 var deathScreen;
 
+var exportBox; //textbox to transfer to SQL
+var exportButton;
+
 function setup() {
   createCanvas(600, 600);
+  player = 0;
 
-  score = 1;
+  //fetching input element from html and setting up style
+  exportBox = select('#output')
+  exportBox.style('position', 'absolute');
+  exportBox.style('top', '300px');
+  exportBox.style('left', '250px');
+  exportBox.style('z-index', '-1'); //hiding input box
+  //fetching submit button from html
+  exportButton = select('#submit');
+  exportButton.style('position', 'absolute');
+  exportButton.style('top', '400px');
+  exportButton.style('left', '250px');
+  exportButton.style('z-index', '-1'); //hiding button
+
   scoreCounter = createElement('h1', 'Snake Length: ' + 1);
   scoreCounter.position(600, 0);
 
-  startScreen = createElement('h1', 'Press UP arrow key to start!');
-  startScreen.position(100, 200);
+  reset();
+}
+
+function reset(){
+  score = 1;
+
+  startScreen = createElement('h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!');
+  startScreen.position(25, 100);
 
   s = new Snake();
   frameRate(15);
   spawnFood();
-
+  loop();
 }
 
 function spawnFood() {
@@ -37,10 +59,20 @@ function draw() {
 
   if (s.eat(food)) {
      score++;
-    scoreCounter.html('Snake Length: ' + score);
     spawnFood();
   }
-  s.death();
+
+  scoreCounter.html('Snake Length: ' + score);
+
+  if(s.death()){
+    player = 0;
+    deathScreen = createElement('h1', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
+    deathScreen.position(125, 100);
+    exportBox.value(score);
+    exportButton.style('z-index', '0'); //hiding button
+    noLoop();
+  };
+
   s.update();
   s.show();
 
@@ -51,21 +83,18 @@ function draw() {
 
 
 function keyPressed() {
-   if(startScreen){
-      if(keyCode === UP_ARROW){
-         startScreen.remove();
-         loop();
-      }
-   }
-   if(deathScreen){
-      if(keyCode === ENTER){
-         deathScreen.remove();
-         startScreen = createElement('h1', 'Press UP arrow key to start!');
-         startScreen.position(100, 200);
-         score = 1;
-      }
-   }
-  if (keyCode === UP_ARROW) {
+
+  if(keyCode === ENTER && player === 0){
+    deathScreen.remove();
+    reset();
+  }
+
+  if(keyCode === SHIFT && player === 0){
+    startScreen.remove();
+    player = 1;
+  }
+
+  if (keyCode === UP_ARROW && player === 1) {
     if(s.y === 0 && s.yspeed === -1){ //support for if snake is at edge and user tries to change speed to out of mapn
       s.direction(1, 0); //change speed to right
     }
@@ -77,7 +106,7 @@ function keyPressed() {
     }
   }
 
-  else if (keyCode === DOWN_ARROW) {
+  else if (keyCode === DOWN_ARROW && player ===1 ) {
     if(s.y === height-sizeScale && s.yspeed === 1){ //support for if snake is at edge and user tries to change speed to out of map
       s.direction(-1, 0); //change speed to left
     }
@@ -89,7 +118,7 @@ function keyPressed() {
     }
   }
 
-  else if (keyCode === RIGHT_ARROW) {
+  else if (keyCode === RIGHT_ARROW && player===1) {
     if(s.x === width-20 && s.xspeed === 1){ //support for if snake is at edge and user tries to change speed to out of map
       s.direction(0, 1); //change speed to down
     }
@@ -101,7 +130,7 @@ function keyPressed() {
     }
   }
 
-  else if (keyCode === LEFT_ARROW) {
+  else if (keyCode === LEFT_ARROW && player===1) {
     if(s.x === 0 && s.xspeed === -1){ //support for if snake is at edge and user tries to change speed to out of map
       s.direction(0, -1); //change speed to up
     }
