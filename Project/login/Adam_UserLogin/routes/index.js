@@ -36,6 +36,15 @@ router.get('/profile', authenticationMiddleware(), function (req, res) {
 });
 
 /*
+GET Games Page
+Going to try and copy the same post action when someone has logged in
+*/
+router.get('/games', authenticationMiddleware(), function (req, res) {
+	//render the games page
+	res.render('games', { title: 'Welcome to the aMAZEing Games Page' });
+});
+
+/*
 GET Login Page
 When the user gets a url called 'login'
 */
