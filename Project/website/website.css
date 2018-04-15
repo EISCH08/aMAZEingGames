@@ -9,6 +9,7 @@
     text-align:center;
     background-color: #000000;
     height:38px;
+    text-transform: uppercase;
 }
 
 #nav ul {
@@ -51,6 +52,7 @@
     text-align:center;
     background-color: #000000;
     height:38px;
+
 }
 
 #usernav ul {
@@ -127,4 +129,8 @@ table#usertable {
     text-align: left;
     background-color: black;
     color: white;
+}
+
+#profile {
+  text-transform: uppercase;
 }
