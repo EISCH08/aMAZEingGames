@@ -21,6 +21,18 @@ router.get('/', function(req, res, next) {
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
 
+/*This was added to store a score after someone plays the game   */
+router.get('/save-score', function(req, res, next) {
+	//gets the user id --> print out to make sure maybe?
+	current_user = req.user;
+	//gets the score the user just submitted after playing the game
+	current_score = req.params.output;
+	if(req.isAuthenticated()){
+		// DB CALL to insert the score (current_score) into a database
+	}
+  res.render('home', { title: 'aMAZEing Games Home Page' });
+});
+
 router.get('/register', function(req, res, next) {
   res.render('register', { title: 'aMAZEing Games Registration' });
 });
