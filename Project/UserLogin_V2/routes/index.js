@@ -41,7 +41,7 @@ Going to try and copy the same post action when someone has logged in
 */
 router.get('/games', authenticationMiddleware(), function (req, res) {
 	//render the games page
-	res.render('games', { title: 'Welcome to the aMAZEing Games Page' });
+	res.render('games', { title: 'New page' });
 });
 
 /*

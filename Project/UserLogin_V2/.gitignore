@@ -35,3 +35,7 @@ npm-debug.log
 # Local env file with credentials. This stops git from tracking the log-in credentials 
 # So this .env file is not showing up in your git status as a modified file
 .env
+
+
+#adding in my database password
+index.php

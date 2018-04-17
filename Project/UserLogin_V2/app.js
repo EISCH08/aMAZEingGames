@@ -77,6 +77,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/scripts', express.static(__dirname + '/src/scripts/'));
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
