@@ -25,10 +25,13 @@ router.get('/', function(req, res, next) {
 router.get('/save-score', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
 	current_user = req.user;
+	console.log('User is: ', req.user);
 	//gets the score the user just submitted after playing the game
-	current_score = req.params.output;
+	current_score = req.body.output;
 	if(req.isAuthenticated()){
 		// DB CALL to insert the score (current_score) into a database
+		console.log("This is your score: ", current_score);
+		console.log("This is your score: ", typeof(current_score));
 	}
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
