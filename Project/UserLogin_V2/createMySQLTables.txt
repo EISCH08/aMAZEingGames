@@ -1,0 +1,55 @@
+1. - Log into your mysql database:
+	mysql -u root -p (this will require you to enter your mysql password)
+
+2. - Check if you have an aMAZEingGames db:
+	show databases;
+
+3. - If you don't have one yet:
+	create database aMAZEingGames;
+
+4. - Now switch to that databse:
+	use aMAZEingGames;
+
+5. - Create the 2 tables in the db:
+
+	CREATE TABLE users ( 
+	Username varchar(20) null UNIQUE KEY, 
+	Useremail varchar(50) null UNIQUE KEY, 
+	Userpassword binary(100) null,
+	UserID varchar(100) null UNIQUE KEY
+	);
+
+	mysql> describe users;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| Username     | varchar(20)  | YES  | UNI | NULL    |       |
+| Useremail    | varchar(50)  | YES  | UNI | NULL    |       |
+| Userpassword | binary(100)  | YES  |     | NULL    |       |
+| UserID       | varchar(100) | YES  | UNI | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+	CREATE TABLE sessions ( 
+	session_id varchar(128) not null, 
+	expires int(11) unsigned not null, 
+	data text null,
+	primary key (session_id)
+	);
+
+mysql> describe sessions;
++------------+------------------+------+-----+---------+-------+
+| Field      | Type             | Null | Key | Default | Extra |
++------------+------------------+------+-----+---------+-------+
+| session_id | varchar(128)     | NO   | PRI | NULL    |       |
+| expires    | int(11) unsigned | NO   |     | NULL    |       |
+| data       | text             | YES  |     | NULL    |       |
++------------+------------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+6. - Verify correct data in your .env file
+
+	Make sure you add the db name "aMAZEingGames" inside of your .env file and that you have your mysql password
+	stored in that .env file also.

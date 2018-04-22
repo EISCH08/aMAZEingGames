@@ -1,0 +1,105 @@
+<!doctype html>
+<!--Main page of the website. Authors: Chelsea, Justin, Adam, Vlad, Parker-->
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="website.css">
+  <link rel="stylesheet" type="text/css" href="loginbutton.css">
+</head>
+
+<!--background color: right now it's grey just to show we can change it-->
+
+<body bgcolor="#7F8C8D">
+
+<!--header bar: right now it's horizonal at the top of the page
+With assistance from https://csswizardry.com/2011/01/create-a-centred-horizontal-navigation/-->
+<div id="nav">
+  <ul>
+  <li><a href="webpage.html">Home</a></li>
+  <li><a href=LINK>User</a></li>
+  <li><a href="highscores.html">High Scores</a></li>
+  <li><a href=LINK>ETC</a></li>
+  <div id="nav2"><li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button></li></div>
+</ul>
+</div>
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw"><a href="../database/register.php">Don't have an account?</a></span>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+<script>
+  var modal = document.getElementById('id01');
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+</script>
+
+<!--we could do another navigation bar here with user info? Right now it's just
+the centered userpic, which I like too-->
+
+<div id="usernav">
+  <ul>
+    <li><a href=LINK><img src=https://i.imgur.com/FDhE9AF.png border=0px></a></li>
+  </div>
+
+<!--These are the game links-->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<center><table id="gamescores">
+  <tr>
+    <th>Game</th>
+    <th>Score</th>
+    <th>Player</th>
+  </tr>
+  <tr>
+    <td>Maze Game</td>
+    <td>10000 points</td>
+    <td>Vlad</td>
+  </tr>
+  <tr>
+    <td>Snake Game</td>
+    <td>500 points</td>
+    <td>Justin</td>
+  </tr>
+  <tr>
+    <td>GAME 3</td>
+    <td>100 points</td>
+    <td>Adam</td>
+  </tr>
+  <tr>
+    <td>GAME 4</td>
+    <td>7777 points</td>
+    <td>Parker</td>
+  </tr>
+</table>
+</center>
+</div>
+
+</body>

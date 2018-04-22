@@ -1,0 +1,15 @@
+Meeting notes from April 15 - 2018
+
+Members present - Justin, Parker, Chelsea, Sol, Adam, (Vlad is sick)
+
+Updates:
+  Games are completed and export scores to a database 
+
+Things for next meeting:
+  Bring everything together --> Adam's user registration/user login bundle with all the games
+    How do we render the html file inside an hbs file or do we need to run it differently on the index.js page?
+  Clean up GitHub directory
+    Remove unused files/folders and only keep necessary info
+    Rename everything so that is's relevant to project
+  
+  
