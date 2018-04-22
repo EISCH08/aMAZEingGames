@@ -1,0 +1,18 @@
+Meeting Notes for April 22, 2018
+
+Members in Attendance: Adam, Justin, Parker, Sol, Vlad, Chelsea = sick
+
+
+Updates from last meeting:
+  - Front end (user registration, user login, profile, Snake Game when logged in as user) are all available and connected to the
+  database for users. Still need to work on exporting scores for games to a MySQL db and retrieve them for registered users
+  profile pages.
+  
+
+Things to do before next meeting(will be last meeting of semester before turning in project):
+  - Project 5 Milestone is due tonight by midnight!
+  
+
+What's working/isn't working:
+  - N/A
+
