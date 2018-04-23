@@ -1,7 +1,8 @@
 function Flower(x,y){
   this.x = x;
   this.y = y;
-  this.r = 30;
+  this.r = 15;
+  this.destroyed = false;
 
   this.xdirection = 1;
 
@@ -17,10 +18,10 @@ function Flower(x,y){
 
   this.shiftDown = function(){
     this.xdirection *= -1;
-    this.y += this.r;
+    this.y += this.r*3;
   }
 
-  this.grow = function(){
-    this.r = this.r + 2;
+  this.destroy = function(){
+    this.destroyed = true;
   }
 }

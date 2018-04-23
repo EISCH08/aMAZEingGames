@@ -1,21 +1,40 @@
 var ship;
 var flowers = [];
 var drops = [];
+var rows; //rows of enemies
+var frames = 40; //framerate of game
+var framecount;
+var cooldown; //player shot, they are on cooldown (true)
 
 
 function setup(){
   createCanvas(600,400);
+  frameRate(frames);
+  reset();
+}
+
+function reset(){
+  cooldown = false; //not on cooldown at start
+  framecount = 0;
+  rows = 4;
   ship = new Ship();
   //drop = new Drop(width/2, 80);
-  for(var i = 0; i < 6; i++){
-    flowers[i] = new Flower(i*80+80, 60);
+  for(var i = 0; i < 8; i++){
+    flowers[i] = new Flower(i*60 + 20, 60);
   }
-
-
 }
 
 function draw(){
   background(51);
+
+  if(cooldown){
+    framecount += 1;
+    framecount = framecount%(frames/2);
+    if(framecount == 0){ //after 1 second (x frames) cooldown is off
+      cooldown = false;
+    }
+  }
+
   ship.show();
   ship.move(ship.xdirection);
 
@@ -25,7 +44,7 @@ function draw(){
     for(var j = 0; j < flowers.length; j++){
       if(drops[i].collision(flowers[j]))
       {
-        flowers[j].grow();
+        flowers[j].destroy();
         drops[i].evaporate();
       }
     }
@@ -44,12 +63,28 @@ function draw(){
   if(edge){
     for(var i = 0; i < flowers.length; i++){
       flowers[i].shiftDown();
-  }
+    }
+    if(rows > 0){
+      rows -= 1; //one less row left to spawn
+    }
+
+    if(rows > 0){
+      for(var i = 0; i < 8; i++){
+        var newFlower = new Flower(i*60 + 20, 60)
+        flowers.push(newFlower);
+      }
+    }
 }
 
   for(var i = drops.length-1; i >= 0; i--){
     if(drops[i].evaporated){
       drops.splice(i, 1);
+    }
+  }
+
+  for(var i = flowers.length-1; i >= 0; i--){
+    if(flowers[i].destroyed){
+      flowers.splice(i, 1);
     }
   }
 }
@@ -58,11 +93,11 @@ function keyReleased(){
   if(key != ' '){
     ship.setDirection(0);
   }
-
 }
 
 function keyPressed(){
-  if(key === ' '){
+  if(key === ' ' && !cooldown){
+    cooldown = true;
     var drop = new Drop(ship.x, height);
     drops.push(drop);
   }
