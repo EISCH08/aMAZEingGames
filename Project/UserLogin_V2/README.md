@@ -33,7 +33,7 @@ var connection = mysql.createConnection({
   socketPath: '/var/run/mysqld/mysqld.sock'
 })
 ```
-Make sure you create a **.env** file inside of your **views** directory (or edit the **.env.default** file but just make sure to rename it to **.env**). I left it out of this repo because it holds your database password. The **.env** file should look something similar to this:  
+Make sure you create a **.env** file that is in the same directory as the **.env.default** (or edit the **.env.default** file but just make sure to rename it to **.env**). I left it out of this repo because it holds your database password. The **.env** file should look something similar to this:  
 ```
 NODE_ENV=DEVELOPMENT
 
