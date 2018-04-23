@@ -22,16 +22,24 @@ router.get('/', function(req, res, next) {
 });
 
 /*This was added to store a score after someone plays the game   */
-router.get('/save-score', function(req, res, next) {
+router.post('/save-score/submit', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
-	current_user = req.user;
-	console.log('User is: ', req.user);
+	
+	console.log(typeof current_user);
 	//gets the score the user just submitted after playing the game
-	current_score = req.body.output;
+	var current_score = parseInt(req.body.id);
 	if(req.isAuthenticated()){
+		current_user = req.user.userTag;
+	console.log('User is: ', current_user);
 		// DB CALL to insert the score (current_score) into a database
-		console.log("This is your score: ", current_score);
-		console.log("This is your score: ", typeof(current_score));
+		//can change this code to work for any of the games you want to add
+		const db = require('../db.js');
+		var sql = "UPDATE HighScores SET Snake =" + current_score +" WHERE UserID = '"+current_user+"' AND Snake < " + current_score + "" ;
+		db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("score added");
+		});
 	}
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
@@ -102,7 +110,7 @@ POST request for new user registration
 
 router.post('/register', function(req, res, next) {
 
-	req.checkBody('username', 'Username field cannot be empty.').notEmpty();
+	req.checkBody('', 'Username field cannot be empty.').notEmpty();
 	req.checkBody('username', 'Username must be between 4-15 characters long.').len(4,15);
 	req.checkBody('email', 'The email entered is invalid, please try again.').isEmail();
 	req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4,100);
