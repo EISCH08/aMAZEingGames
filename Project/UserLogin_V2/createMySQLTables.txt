@@ -10,7 +10,7 @@
 4. - Now switch to that databse:
 	use aMAZEingGames;
 
-5. - Create the 2 tables in the db:
+5. - Create the 3 tables in the db:
 
 	CREATE TABLE users ( 
 	Username varchar(20) null UNIQUE KEY, 
@@ -18,6 +18,15 @@
 	Userpassword binary(100) null,
 	UserID varchar(100) null UNIQUE KEY
 	);
+
+
+	CREATE TABLE HighScores ( 
+	UserID varchar(100) null, 
+	Snake int(11) null,
+	Maze int(11) null,
+	SpaceInvaders int(11) null,
+	Foreign key (UserID) References users(UserID)
+	) Engine = innodb;
 
 	mysql> describe users;
 +--------------+--------------+------+-----+---------+-------+

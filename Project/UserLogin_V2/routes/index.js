@@ -21,17 +21,44 @@ router.get('/', function(req, res, next) {
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
 
+//Get the score for the SNAKE game
+//NOT WORKING CURRENTLY
+
+
+router.get(':id', function(req, res, next) {
+
+	const db = require('../db.js');
+	current_user = req.user.userTag;
+	req.params.id = 17;
+	var sql = "SELECT SNAKE FROM HighScores WHERE UserID = '"+current_user+"' " ;
+	db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("Displaying score");
+		});
+	
+  res.render('home', { output: req.params.id });
+});
+
 /*This was added to store a score after someone plays the game   */
-router.get('/save-score', function(req, res, next) {
+router.post('/save-score/submit', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
-	current_user = req.user;
-	console.log('User is: ', req.user);
+	current_user = req.user.userTag;
+	console.log(typeof current_user);
 	//gets the score the user just submitted after playing the game
-	current_score = req.body.output;
+	var current_score = parseInt(req.body.id);
 	if(req.isAuthenticated()){
+		
+		console.log('User is: ', current_user);
 		// DB CALL to insert the score (current_score) into a database
-		console.log("This is your score: ", current_score);
-		console.log("This is your score: ", typeof(current_score));
+		//can change this code to work for any of the games you want to add
+		const db = require('../db.js');
+		var sql = "UPDATE HighScores SET Snake =" + current_score +" WHERE UserID = '"+current_user+"' AND Snake < " + current_score + "" ;
+		db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("score added");
+		});
 	}
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
@@ -107,7 +134,6 @@ router.post('/register', function(req, res, next) {
 	req.checkBody('email', 'The email entered is invalid, please try again.').isEmail();
 	req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4,100);
 	req.checkBody('password', 'Password must be between 8-100 characters long.').len(8,100);
-	req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
 	req.checkBody('passwordMatch', 'Password must be between 8-100 characters long.').len(8,100);
 	req.checkBody('passwordMatch', 'Passwords do not match. Please try again.').equals(req.body.password);
 
@@ -156,15 +182,18 @@ router.post('/register', function(req, res, next) {
 					//if not error the take request object (req.) and use login()
 					//results should hold userid from the function(error, results, fields)
 					console.log(results[0]);
-					req.login(userTag, function(err) { 
 						//if login was successful take response object (res.) and redirect user to root/home page
-						res.redirect('/');
+					res.redirect('/');
 
-					});
 					//res.render('register', { title: 'Registration Complete!' });
 				});
 
 			})
+  		var initScore = 0;
+  		var initScoreMaze = 10000;
+  		db.query('INSERT INTO HighScores (UserID, Snake, Maze, SpaceInvaders) VALUES (?, ?, ?, ?)', [UserID,initScore,initScoreMaze,initScore],
+  			function(error, results, fields) {
+  			});
 		});
 	//res.render('register', { title: 'Registration Complete!' });
 	}
