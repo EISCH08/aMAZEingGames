@@ -24,7 +24,7 @@
 	UserID varchar(100) null, 
 	Snake int(11) null,
 	Maze int(11) null,
-	FlappyBird int(11) null,
+	SpaceInvaders int(11) null,
 	Foreign key (UserID) References users(UserID)
 	) Engine = innodb;
 
