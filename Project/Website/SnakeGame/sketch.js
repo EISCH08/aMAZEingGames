@@ -13,24 +13,26 @@ var exportBox; //textbox to transfer to SQL
 var exportButton;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(400, 400);
   player = 0;
 
   //fetching input element from html and setting up style
   exportBox = select('#output')
   exportBox.style('position', 'absolute');
-  exportBox.style('top', '300px');
-  exportBox.style('left', '250px');
+  exportBox.style('top', '550px');
+  exportBox.style('left', '585px');
+  exportBox.style('width', '100px');
+  exportBox.style('height', '5px');
   exportBox.style('z-index', '-1'); //hiding input box
   //fetching submit button from html
   exportButton = select('#submit');
   exportButton.style('position', 'absolute');
-  exportButton.style('top', '400px');
-  exportButton.style('left', '250px');
+  exportButton.style('top', '585px');
+  exportButton.style('left', '590px');
   exportButton.style('z-index', '-1'); //hiding button
 
   scoreCounter = createElement('h1', 'Snake Length: ' + 1);
-  scoreCounter.position(600, 0);
+  scoreCounter.position(542, 80);
 
   reset();
 }
@@ -38,8 +40,8 @@ function setup() {
 function reset(){
   score = 1;
 
-  startScreen = createElement('h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!');
-  startScreen.position(25, 100);
+  startScreen = createElement(); //'h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!'
+  startScreen.position(350, 10);
 
   s = new Snake();
   frameRate(15);
@@ -67,7 +69,7 @@ function draw() {
   if(s.death()){
     player = 0;
     deathScreen = createElement('h1', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
-    deathScreen.position(125, 100);
+    deathScreen.position(460, 170);
     exportBox.value(score);
     exportButton.style('z-index', '0'); //hiding button
     noLoop();
