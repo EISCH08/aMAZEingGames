@@ -12,11 +12,14 @@ var countdown; //the player cannot move until this times out
 var countdownScreen;
 var framecount2;
 
+var startScreen;
+
 var gameover; //win or lose, keeps track of gamestate
 var lost;
 var victoryScreen; //pops up once all enemies are destroyed
 
 var difficulty; //1 = easy, 2 = Medium, 3 = Hard
+var player;
 
 
 function setup(){
@@ -24,18 +27,24 @@ function setup(){
 
   victoryScreen = createElement('h1', 'You Win! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
   victoryScreen.position(180, 100);
+  victoryScreen.style('z-index', '-1');
 
   deathScreen = createElement('h1', 'You Lost! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
   deathScreen.position(180, 100);
+  deathScreen.style('z-index', '-1');
 
   countdownScreen = createElement('h1', '5');
   countdownScreen.position(295, 150);
+  countdownScreen.style('z-index', '-1');
+
+  startScreen = createElement('h1', 'Use the left and right arrow keys to move <br><br> Press the space bar to shoot at most 1 shot<br>per second <br> <br> Press Enter to start!')
+  startScreen.position(0, 50);
 
   //easy difficulty is default
   difficulty = 1;
+  player = 0;
 
   frameRate(frames);
-  reset();
 }
 
 function reset(){
@@ -193,6 +202,12 @@ function keyReleased(){
 }
 
 function keyPressed(){
+  if(keyCode === ENTER && player == 0){
+    player = 1;
+    startScreen.remove();
+    reset();
+  }
+
   //key input when the player wins
   if((keyCode === 49 || keyCode === 50 || keyCode == 51) && !lost && gameover){
      if(keyCode === 49){
