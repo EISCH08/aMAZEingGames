@@ -21,16 +21,35 @@ router.get('/', function(req, res, next) {
   res.render('home', { title: 'aMAZEing Games Home Page' });
 });
 
+//Get the score for the SNAKE game
+//NOT WORKING CURRENTLY
+
+
+router.get(':id', function(req, res, next) {
+
+	const db = require('../db.js');
+	current_user = req.user.userTag;
+	req.params.id = 17;
+	var sql = "SELECT SNAKE FROM HighScores WHERE UserID = '"+current_user+"' " ;
+	db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("Displaying score");
+		});
+	
+  res.render('home', { output: req.params.id });
+});
+
 /*This was added to store a score after someone plays the game   */
 router.post('/save-score/submit', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
-	
+	current_user = req.user.userTag;
 	console.log(typeof current_user);
 	//gets the score the user just submitted after playing the game
 	var current_score = parseInt(req.body.id);
 	if(req.isAuthenticated()){
-		current_user = req.user.userTag;
-	console.log('User is: ', current_user);
+		
+		console.log('User is: ', current_user);
 		// DB CALL to insert the score (current_score) into a database
 		//can change this code to work for any of the games you want to add
 		const db = require('../db.js');
@@ -110,12 +129,11 @@ POST request for new user registration
 
 router.post('/register', function(req, res, next) {
 
-	req.checkBody('', 'Username field cannot be empty.').notEmpty();
+	req.checkBody('username', 'Username field cannot be empty.').notEmpty();
 	req.checkBody('username', 'Username must be between 4-15 characters long.').len(4,15);
 	req.checkBody('email', 'The email entered is invalid, please try again.').isEmail();
 	req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4,100);
 	req.checkBody('password', 'Password must be between 8-100 characters long.').len(8,100);
-	req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
 	req.checkBody('passwordMatch', 'Password must be between 8-100 characters long.').len(8,100);
 	req.checkBody('passwordMatch', 'Passwords do not match. Please try again.').equals(req.body.password);
 
@@ -173,6 +191,11 @@ router.post('/register', function(req, res, next) {
 				});
 
 			})
+  		var initScore = 0;
+  		var initScoreMaze = 10000;
+  		db.query('INSERT INTO HighScores (UserID, Snake, Maze, SpaceInvaders) VALUES (?, ?, ?, ?)', [UserID,initScore,initScoreMaze,initScore],
+  			function(error, results, fields) {
+  			});
 		});
 	//res.render('register', { title: 'Registration Complete!' });
 	}

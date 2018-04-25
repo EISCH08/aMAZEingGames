@@ -1,5 +1,5 @@
 var cols,rows;
-var size1 = 60;
+var size1 = 40;
 var grid;
 var user; //0 is generating the maze, once done player = 1
 //keeps player locked out from controls until maze is done generating
@@ -18,22 +18,24 @@ var exportBox; //textbox to transfer to SQL
 var exportButton;
 
 function setup(){
-   createCanvas(600,600);
+   createCanvas(400,400);
    //creating timer within JS
    timer = createElement('h1', 'Time: ' + 0);
-   timer.position(610,0);
+   timer.position(590,20);
 
    //fetching input element from html and setting up style
    exportBox = select('#output')
    exportBox.style('position', 'absolute');
-   exportBox.style('top', '300px');
-   exportBox.style('left', '250px');
+   exportBox.style('top', '500px');
+   exportBox.style('left', '600px');
+   exportBox.style('width', '100px');
+   exportBox.style('height', '10px');
    exportBox.style('z-index', '-1'); //hiding input box
    //fetching submit button from html
    exportButton = select('#submit');
    exportButton.style('position', 'absolute');
-   exportButton.style('top', '300px');
-   exportButton.style('left', '250px');
+   exportButton.style('top', '540px');
+   exportButton.style('left', '605px');
    exportButton.style('z-index', '-1'); //hiding button
 
    cols = floor(width/size1); //x cols exist
@@ -178,7 +180,7 @@ function keyPressed() {
   }
   if(current.exit){
      victoryMessage = createElement('h1', 'You won in ' + time + ' seconds! <br> -Submit your score below <br> Or press Enter to restart');
-     victoryMessage.position(150,100);
+     victoryMessage.position(450,100);
      //removed once KEY_CODE Enter is pressed
      exportButton.style('z-index', '0');
      exportBox.value(time);
