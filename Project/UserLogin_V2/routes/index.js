@@ -83,7 +83,7 @@ Going to try and copy the same post action when someone has logged in
 */
 router.get('/games', authenticationMiddleware(), function (req, res) {
 	//render the games page
-	res.render('games', { title: 'Games' });
+	res.render('games', { title: 'Snake Game' });
 });
 
 /*
