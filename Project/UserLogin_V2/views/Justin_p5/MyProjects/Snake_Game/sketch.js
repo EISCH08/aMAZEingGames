@@ -38,7 +38,7 @@ function setup() {
 function reset(){
   score = 1;
 
-  startScreen = createElement('h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!');
+  startScreen = createElement('h2', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!');
   startScreen.position(25, 100);
 
   s = new Snake();
@@ -66,7 +66,7 @@ function draw() {
 
   if(s.death()){
     player = 0;
-    deathScreen = createElement('h1', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
+    deathScreen = createElement('h2', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
     deathScreen.position(125, 100);
     exportBox.value(score);
     exportButton.style('z-index', '0'); //hiding button
