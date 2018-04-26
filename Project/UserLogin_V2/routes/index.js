@@ -18,7 +18,28 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
 	console.log(req.user);
 	console.log(req.isAuthenticated());
-  res.render('home', { title: 'aMAZEing Games Home Page' });
+	const db = require('../db.js');
+	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC";
+	db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log(result);
+			user1 = result[0].Username;
+			user1 = user1.toUpperCase();
+			user2 = result[1].Username;
+			user2 = user2.toUpperCase();
+			user3 = result[2].Username;
+			user3 = user3.toUpperCase();
+
+			score1 = result[0].Snake;
+			score2 = result[1].Snake;
+			score3 = result[2].Snake;
+
+			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
+				score2: score2, score3, score3});
+			
+		});
+  
 });
 
 //Get the score for the SNAKE game
@@ -70,7 +91,7 @@ router.post('/save-score/submit', function(req, res, next) {
 			console.log("score added");
 		});
 	}
-  res.render('home', { title: 'aMAZEing Games Home Page' });
+  res.redirect('/');
 });
 
 router.get('/register', function(req, res, next) {
@@ -109,8 +130,10 @@ router.post('/login', passport.authenticate('local', {
 	//where should user be redirected if they are successfully logged in --> to their profile page 
 	successRedirect: '/profile', 
 	//if they fail --> redirect them to the login page
-	failureRedirect: '/login'
+	failureRedirect: '/error'
 })); 
+
+router.get('/error', (req,res) => res.send("Error logging in"));
 
 /*
 GET Logout Page
@@ -139,7 +162,7 @@ router.post('/register', function(req, res, next) {
 	req.checkBody('username', 'Username must be between 4-15 characters long.').len(4,15);
 	req.checkBody('email', 'The email entered is invalid, please try again.').isEmail();
 	req.checkBody('email', 'Email address must be between 4-100 characters long, please try again.').len(4,100);
-	req.checkBody('password', 'Password must be between 8-100 characters long.').len(8,100);
+	//req.checkBody('password', 'Password must be between 8-100 characters long.').len(8,100);
 	req.checkBody('passwordMatch', 'Password must be between 8-100 characters long.').len(8,100);
 	req.checkBody('passwordMatch', 'Passwords do not match. Please try again.').equals(req.body.password);
 
