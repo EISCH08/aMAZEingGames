@@ -1,0 +1,31 @@
+{{> header }}
+
+<h2></h2>
+
+{{#if errors}}
+{{#each errors}}
+<div class="alert alert-danger">
+  <strong>{{this.msg}}</strong>
+</div>
+{{/each}}
+{{/if}}
+
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {text-align: center;} </style>
+    <script src="/scripts/p5.min.js"></script>
+    <script src="/scripts/p5.dom.min.js"></script>
+    <script src="/scripts/p5.sound.min.js"></script>
+    <script type="text/javascript" src="/scripts/snake.js" ></script>
+    <script type="text/javascript" src="/scripts/sketch.js" ></script>
+  </head>
+  <body>
+  <font size=5>Use the arrow keys to control your snake!<br>Press the SHIFT key to start!</font>
+  <br>
+    <form action="/save-score/submit" method = "post" />
+      <input id = "output" type = "text" name = "id" />
+      <input name= "" id = "submit" type = "submit" />
+    </form>
+  </body>
+
+{{> footer-end }}

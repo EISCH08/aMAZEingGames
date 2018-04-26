@@ -154,11 +154,15 @@ authenticationMiddleware() tests for use login authentication and restricts the 
 GET Games Page
 Going to try and copy the same post action when someone has logged in
 */
-router.get('/games', authenticationMiddleware(), function (req, res) {
+router.get('/snake', authenticationMiddleware(), function (req, res) {
 	//render the games page
-	res.render('games', { title: 'Snake Game' });
+	res.render('snake', { title: 'Snake Game' });
 });
 
+router.get('/maze', authenticationMiddleware(), function (req, res) {
+	//render the games page
+	res.render('maze', { title: 'Maze Game' });
+});
 /*
 GET Login Page
 When the user gets a url called 'login'

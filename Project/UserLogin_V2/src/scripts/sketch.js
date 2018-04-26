@@ -25,12 +25,15 @@ function setup() {
   //fetching submit button from html
   exportButton = select('#submit');
   exportButton.style('position', 'absolute');
-  exportButton.style('top', '170px');
-  exportButton.style('left', '800px');
+  exportButton.style('top', '140%');
+  exportButton.style('left', '80%');
   exportButton.style('z-index', '-1'); //hiding button
 
   scoreCounter = createElement('h1', 'Snake Length: ' + 1);
-  scoreCounter.position(800, 125);
+  //scoreCounter.position(100, '90%');
+  scoreCounter.style('position', 'absolute');
+  scoreCounter.style('top', '22%');
+  scoreCounter.style('left', '69%');
 
   reset();
 }
