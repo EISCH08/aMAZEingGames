@@ -182,11 +182,9 @@ router.post('/register', function(req, res, next) {
 					//if not error the take request object (req.) and use login()
 					//results should hold userid from the function(error, results, fields)
 					console.log(results[0]);
-					req.login(userTag, function(err) { 
 						//if login was successful take response object (res.) and redirect user to root/home page
-						res.redirect('/');
+					res.redirect('/');
 
-					});
 					//res.render('register', { title: 'Registration Complete!' });
 				});
 
