@@ -24,7 +24,8 @@ router.get('/', function(req, res, next) {
 		{
 			if(err) throw err;
 			console.log(result);
-			user1 = result[0].Username;
+			if (result[2]!=null) {
+				user1 = result[0].Username;
 			user1 = user1.toUpperCase();
 			user2 = result[1].Username;
 			user2 = user2.toUpperCase();
@@ -37,6 +38,51 @@ router.get('/', function(req, res, next) {
 
 			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
 				score2: score2, score3, score3});
+			}
+			else if (result[1]!=null && result[2] == null) {
+			user1 = result[0].Username;
+			user1 = user1.toUpperCase();
+			user2 = result[1].Username;
+			user2 = user2.toUpperCase();
+			user3 = 'NaN';
+
+			score1 = result[0].Snake;
+			score2 = result[1].Snake;
+			score3 = 0;
+
+			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
+				score2: score2, score3, score3});
+			}
+			else if(result[0]!=null && result[1]==null ){
+			user1 = result[0].Username;
+			user1 = user1.toUpperCase();
+			user2 = 'NaN';
+			user3 = 'NaN';
+
+			score1 = result[0].Snake;
+			score2 = 0;
+			score3 = 0;
+
+			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
+				score2: score2, score3, score3});
+			}
+			else{
+			user1 = 'NaN';
+			user2 = 'NaN';
+			user3 = 'NaN';
+
+			score1 = 0;
+			score2 = 0;
+			score3 = 0;
+
+			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
+				score2: score2, score3, score3});
+		}
+
+
+
+			
+			
 			
 		});
   
