@@ -16,8 +16,7 @@ const saltRounds = 10;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log(req.user);
-	console.log(req.isAuthenticated());
+
 	const db = require('../db.js');
 	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC";
 	db.query (sql, function(err,result)
@@ -118,7 +117,7 @@ router.get('/profile', function(req, res, next) {
   
 
 /*This was added to store a score after someone plays the game   */
-router.post('/save-score/submit', function(req, res, next) {
+router.post('/save-score/Snake', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
 	current_user = req.user.userTag;
 	console.log(typeof current_user);
@@ -139,6 +138,32 @@ router.post('/save-score/submit', function(req, res, next) {
 	}
   res.redirect('/');
 });
+
+
+router.post('/save-score/maze', function(req, res, next) {
+	//gets the user id --> print out to make sure maybe?
+	current_user = req.user.userTag;
+	console.log(typeof current_user);
+	//gets the score the user just submitted after playing the game
+	var current_score = parseInt(req.body.id);
+	if(req.isAuthenticated()){
+		console.log(current_score);
+		console.log('User is: ', current_user);
+		// DB CALL to insert the score (current_score) into a database
+		//can change this code to work for any of the games you want to add
+		const db = require('../db.js');
+		var sql = "UPDATE HighScores SET Maze =" + current_score +" WHERE UserID = '"+current_user+"' AND Maze > " + current_score + "" ;
+		db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("score added");
+		});
+	}
+  res.redirect('/');
+});
+
+
+
 
 router.get('/register', function(req, res, next) {
   res.render('register', { title: 'aMAZEing Games Registration' });
