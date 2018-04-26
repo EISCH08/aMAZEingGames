@@ -25,20 +25,30 @@ router.get('/', function(req, res, next) {
 //NOT WORKING CURRENTLY
 
 
-router.get(':id', function(req, res, next) {
+router.get('/profile', function(req, res, next) {
 
 	const db = require('../db.js');
 	current_user = req.user.userTag;
-	req.params.id = 17;
-	var sql = "SELECT SNAKE FROM HighScores WHERE UserID = '"+current_user+"' " ;
+	var snakeScore;
+	var mazeScore;
+	var username;
+	
+	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID WHERE HighScores.UserID = '"+current_user+"' " ;
 	db.query (sql, function(err,result)
 		{
 			if(err) throw err;
-			console.log("Displaying score");
+			console.log(result[0]);
+			snakeScore = result[0].Snake;
+			mazeScore = result[0].Maze;
+			username = result[0].Username;
+			spaceInvadersScore = result[0].SpaceInvaders;
+			res.render('profile', { output1: snakeScore, output2: mazeScore,output3: spaceInvadersScore, username: username});
+			
 		});
 	
-  res.render('home', { output: req.params.id });
 });
+	
+  
 
 /*This was added to store a score after someone plays the game   */
 router.post('/save-score/submit', function(req, res, next) {
@@ -72,10 +82,6 @@ GET User Profile Page
 When the user gets a url called 'profile' --> call the following funciton
 authenticationMiddleware() tests for use login authentication and restricts the profile page if not true
 */
-router.get('/profile', authenticationMiddleware(), function (req, res) {
-	//render a profile page
-	res.render('profile', { title: 'aMAZEing Games Profile Page' });
-});
 
 /*
 GET Games Page
