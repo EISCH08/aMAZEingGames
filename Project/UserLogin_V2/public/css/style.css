@@ -1,4 +1,12 @@
 body {
   margin: 0; }
 
+h1 {
+	color: orange;
+	text-align: center;
+}
+
+#SNAKE { background-color: red;
+}
+
 /*# sourceMappingURL=style.css.map*/
