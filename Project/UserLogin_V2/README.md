@@ -6,7 +6,7 @@ Ongoing list of npm installs that were needed (MAKE SURE YOU ARE IN PROJECT DIRE
 * `sudo apt-get install wireless-tools`
 * `sudo apt-get install nodejs`
 * `sudo chmod -R 777/usr/lib/nodejs`  
-These `webpack` install commands *should* create a `node_modules` folder inside of your project directory
+These `webpack` install commands *should* create a `node_modules` folder inside of your USER_LOGIN_V2 directory
 * `npm install webpack`
 * `npm install webpack-cli -D`
 * `npm install --save-dev webpack`
