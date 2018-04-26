@@ -13,24 +13,24 @@ var exportBox; //textbox to transfer to SQL
 var exportButton;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(400, 400);
   player = 0;
 
   //fetching input element from html and setting up style
   exportBox = select('#output')
   exportBox.style('position', 'absolute');
   exportBox.style('top', '300px');
-  exportBox.style('left', '250px');
+  exportBox.style('left', '300px');
   exportBox.style('z-index', '-1'); //hiding input box
   //fetching submit button from html
   exportButton = select('#submit');
   exportButton.style('position', 'absolute');
-  exportButton.style('top', '400px');
-  exportButton.style('left', '250px');
+  exportButton.style('top', '170px');
+  exportButton.style('left', '800px');
   exportButton.style('z-index', '-1'); //hiding button
 
   scoreCounter = createElement('h1', 'Snake Length: ' + 1);
-  scoreCounter.position(600, 0);
+  scoreCounter.position(800, 125);
 
   reset();
 }
@@ -38,7 +38,7 @@ function setup() {
 function reset(){
   score = 1;
 
-  startScreen = createElement('h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!');
+  startScreen = createElement(); //'h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!'
   startScreen.position(25, 100);
 
   s = new Snake();
