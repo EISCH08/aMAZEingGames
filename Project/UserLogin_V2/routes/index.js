@@ -117,6 +117,11 @@ router.get('/maze', authenticationMiddleware(), function (req, res) {
 	//render the games page
 	res.render('maze', { title: 'Maze Game' });
 });
+
+router.get('/brick', authenticationMiddleware(), function (req, res) {
+	//render the games page
+	res.render('brick', { title: 'Brick Game' });
+});
 /*
 GET Login Page
 When the user gets a url called 'login'
