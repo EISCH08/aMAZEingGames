@@ -8,3 +8,15 @@ body {
     margin-right: auto;
     width: 50%;
 }
+
+.jumbotron {
+	background: slategrey;
+	width: 100%;
+}
+
+.btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited, .btn-success:focus{
+	background-color: slategrey;
+	border-color: lightgrey;
+	color: lightgrey;
+
+}
