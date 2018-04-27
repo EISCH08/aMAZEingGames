@@ -22,6 +22,14 @@ body {
 
 }
 
+.form-control, .form-control:active, .form-control:focus{
+	border-width: 2px;
+	background-color: slategrey;
+	text-color: white;
+	color: white;
+	border-color: lightgrey;
+}
+
 .nav-link{
 	color: white;
 }
@@ -32,5 +40,8 @@ body {
 
 .profile-title{
 	color: black;
-
 }
+
+.form-control::-webkit-input-placeholder { color: white; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: white; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: white; }  /* Mozilla Firefox 19+ */

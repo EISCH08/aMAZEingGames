@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<h2>Welcome to {{title}} page!</h2>
+	<h2>Welcome to the {{title}} page!</h2>
 
 	{{#if errors}}
 	{{#each errors}}
@@ -30,19 +30,18 @@
 <!--     <link href="signin.css" rel="stylesheet">
 </head> -->
 <br>
-<br>
 	<div class="container">
 
 		<form method="POST" action="/login">
 			<div class="form-group">
-				<label for="username">Username</label>
+				<label for="username"><b>Username</b></label>
 				<input type="text" name="username" class="form-control" placeholder="Username">
 			</div>
 			<div class="form-group">
-				<label for="password">Password</label>
+				<label for="password"><b>Password</b></label>
 				<input type="password" name="password" class="form-control" placeholder="Password">
 			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="submit" class="btn btn-success">Login</button>
 		</form>
 
 	</div> <!-- /container -->

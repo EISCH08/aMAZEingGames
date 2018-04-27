@@ -68,7 +68,7 @@ function Cell(i, j){ //i is the column, j is the row
       var x = this.x*size1;
       var y = this.y*size1;
       noStroke();
-      fill(0,150,100,100);
+      fill(255,0,0,255);
       rect(x, y, size1, size1);
    };
 
