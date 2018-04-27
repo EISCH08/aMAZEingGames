@@ -2,12 +2,15 @@ var s;
 var sizeScale = 25;
 var speedScale = sizeScale;
 
+var apple; //food image to load
 var food;
 var scoreCounter; //visual counter on screen
 var score; //keeps track of the score
 var player; //0 if player is dead 1 if alive
 var startScreen;
 var deathScreen;
+var bg; //background image to load
+var ready; //bug fix to stop shift from causing game to not start with press enter screen showing
 
 var exportBox; //textbox to transfer to SQL
 var exportButton;
@@ -15,7 +18,10 @@ var exportButton;
 function setup() {
   createCanvas(400, 400);
   player = 0;
+  ready = true;
 
+  bg = loadImage('https://image.ibb.co/hDDeeH/topsoil_grande.jpg');
+  apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
   //fetching input element from html and setting up style
   exportBox = select('#output')
   exportBox.style('position', 'absolute');
@@ -42,8 +48,12 @@ function reset(){
   score = 1;
 
   startScreen = createElement(); //'h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!'
-  startScreen.position(25, 100);
+  startScreen.position(50, 100);
+  startScreen.style('background-color', 'black');
+  startScreen.style('color', 'brown');
 
+  bg = loadImage('https://image.ibb.co/hDDeeH/topsoil_grande.jpg');
+  apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
   s = new Snake();
   frameRate(15);
   spawnFood();
@@ -55,13 +65,16 @@ function spawnFood() {
   var rows = floor(height/sizeScale);
   food = createVector(floor(random(cols)), floor(random(rows)));
   food.mult(sizeScale);
+  spr = createSprite(food.x + 10, food.y, 40, 40); //spawn the sprite
+  spr.addImage(apple);
 }
 
 function draw() {
-  background(51);
+  background(bg);
 
   if (s.eat(food)) {
-     score++;
+    spr.remove()
+    score++;
     spawnFood();
   }
 
@@ -70,30 +83,35 @@ function draw() {
   if(s.death()){
     player = 0;
     deathScreen = createElement('h1', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
+    deathScreen.style('background-color', 'black');
+    deathScreen.style('color', 'brown');
     deathScreen.position(125, 100);
     exportBox.value(score);
     exportButton.style('z-index', '0'); //hiding button
+    spr.remove();
     noLoop();
   };
 
   s.update();
   s.show();
 
-
-  fill(255, 0, 100);
-  rect(food.x, food.y, sizeScale, sizeScale);
+  drawSprites();
+  //fill(255, 0, 100);
+  //rect(food.x, food.y, sizeScale, sizeScale);
 }
 
 
 function keyPressed() {
 
-  if(keyCode === ENTER && player === 0){
+  if(keyCode === ENTER){
     deathScreen.remove();
+    ready = true;
     reset();
   }
 
-  if(keyCode === SHIFT && player === 0){
+  if(keyCode === SHIFT && player === 0 && ready){
     startScreen.remove();
+    ready = false;
     player = 1;
   }
 
