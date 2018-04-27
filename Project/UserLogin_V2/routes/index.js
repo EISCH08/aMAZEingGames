@@ -193,6 +193,11 @@ router.get('/brick', authenticationMiddleware(), function (req, res) {
 	//render the games page
 	res.render('brick', { title: 'Brick Game' });
 });
+
+router.get('/space', authenticationMiddleware(), function (req, res) {
+	//render the games page
+	res.render('space', { title: 'Space Invaders Game' });
+});
 /*
 GET Login Page
 When the user gets a url called 'login'

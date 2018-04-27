@@ -1,0 +1,31 @@
+{{> header }}
+
+<h2></h2>
+
+{{#if errors}}
+{{#each errors}}
+<div class="alert alert-danger">
+  <strong>{{this.msg}}</strong>
+</div>
+{{/each}}
+{{/if}}
+
+
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {text-align: center;} </style>
+    <script src="/scripts/p5.min.js"></script>
+    <script src="/scripts/p5.dom.min.js"></script>
+    <script src="/scripts/p5.sound.min.js"></script>
+    <script type="text/javascript" src="/scripts/si/drop.js" ></script>
+    <script type="text/javascript" src="/scripts/si/flower.js" ></script>
+    <script type="text/javascript" src="/scripts/si/ship.js" ></script>
+    <script type="text/javascript" src="/scripts/si/sketch.js" ></script>
+  </head>
+  <link rel='stylesheet' href='css/style.css' >
+  <body>
+  <font size=5>Instructions go here.</font>
+  <br>
+  </body>
+
+{{> footer-end }}
