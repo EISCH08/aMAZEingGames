@@ -1,0 +1,10 @@
+Meeting - 4/29/18
+Team members present: Everyone
+
+—
+
+Went over the last few tasks we need to handle: make sure everything is functioning properly, handle sql calls, set up presentation and figure out what we need for the presentation, make sure the website displays properly.
+
+We finished the website display, found some additional bugs to iron out, and began our presentation slides. We also made certain that our website displayed properly on the CSEL lab projector, since we were nearby.
+
+We’ll finish the presentation by Tuesday, and be prepared to present first thing Wednesday!
