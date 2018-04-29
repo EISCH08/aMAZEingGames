@@ -17,7 +17,7 @@ const saltRounds = 10;
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-	const db = require('../db.js');
+	const db = require('../db.js'); 
 	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC";
 	db.query (sql, function(err,result)
 		{
@@ -140,7 +140,7 @@ router.post('/save-score/Snake', function(req, res, next) {
 });
 
 
-router.post('/save-score/maze', function(req, res, next) {
+router.post('/save-score/Maze', function(req, res, next) {
 	//gets the user id --> print out to make sure maybe?
 	current_user = req.user.userTag;
 	console.log(typeof current_user);
