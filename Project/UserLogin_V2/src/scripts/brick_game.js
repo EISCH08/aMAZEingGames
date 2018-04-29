@@ -99,10 +99,33 @@ function collisionDetection() {
 
 function drawScore() {
     ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = 'black';
     ctx.fillText("Score: "+score, 8, 20);
 }
 
+function reset() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	x = canvas.width/2;
+	y = canvas.height/2;
+	dx = 2;
+	dy = -2;
+	brickRowCount = 3;
+	brickColumnCount = 5;
+	score = 0;
+	bricks = [];
+	for(c=0; c<brickColumnCount; c++) {
+	    bricks[c] = [];
+	    for(r=0; r<brickRowCount; r++) {
+	        bricks[c][r] = { x: 0, y: 0, status: 1 };
+	    }
+	}
+	drawBricks();
+	drawBall();
+	drawPaddle();
+	drawScore();
+	collisionDetection();
+
+}
 
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -123,8 +146,7 @@ function draw() {
         	    dy = -dy;
         	}
         	else {
-        	    alert("Game over (trying to fix this still)");
-		    y = 10;
+        	    reset();
         	}
     	}
 	if(rightPressed && paddleX < canvas.width-paddleWidth) {

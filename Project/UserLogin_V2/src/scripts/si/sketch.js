@@ -1,4 +1,6 @@
 var ship;
+var spr; //sprite over the ship
+var spaceShipImg;
 var flowers = [];
 var drops = [];
 var rows; //rows of enemies
@@ -23,22 +25,26 @@ var player;
 
 
 function setup(){
-  createCanvas(600,400);
+  createCanvas(400,400);
+  spaceShipImg = loadImage('https://image.ibb.co/fTfhDc/Spaceship.png');
+
 
   victoryScreen = createElement('h1', 'You Win! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  victoryScreen.position(180, 100);
+  victoryScreen.position(70, 80);
   victoryScreen.style('z-index', '-1');
 
   deathScreen = createElement('h1', 'You Lost! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  deathScreen.position(180, 100);
+  deathScreen.position(70, 60);
   deathScreen.style('z-index', '-1');
 
   countdownScreen = createElement('h1', '5');
-  countdownScreen.position(295, 150);
+  countdownScreen.position(195, 150);
   countdownScreen.style('z-index', '-1');
 
-  startScreen = createElement('h1', 'Use the left and right arrow keys to move <br><br> Press the space bar to shoot at most 1 shot<br>per second <br> <br> Press Enter to start!')
+  startScreen = createElement('h1', 'Use the left and right arrow<br> keys to move <br><br> Press the space bar to shoot<br> at most 1 shot per second <br> <br> Press Enter to start!')
   startScreen.position(0, 50);
+  startScreen.style('color', 'red');
+  startScreen.style('background-color', 'black');
 
   //easy difficulty is default
   difficulty = 1;
@@ -54,11 +60,15 @@ function reset(){
   framecount = 0;
   framecount2 = 0;
 
-  countdown = 5;
-  countdownScreen.html('5');
+  spr = createSprite(width/2, height-40, 20, 40);
+  spr.addImage(spaceShipImg);
+
+  countdown = 3;
+  countdownScreen.html('3');
   countdownScreen.style('z-index', '0');
 
   ship = new Ship();
+
   //get rid of victory message
   victoryScreen.style('z-index', '-1');
   //get rid of death message
@@ -66,16 +76,16 @@ function reset(){
   //drop = new Drop(width/2, 80);
 
   if(difficulty == 1){
-    perRow = 4;
-    rows = 3
+    perRow = 3;
+    rows = 3;
   }
   if(difficulty == 2){
-    perRow = 6;
-    rows = 4;
+    perRow = 5;
+    rows = 3;
   }
   if(difficulty == 3){
-    perRow = 7;
-    rows = 6;
+    perRow = 5;
+    rows = 4;
   }
 
   for(var i = 0; i < perRow; i++){
@@ -91,6 +101,8 @@ function draw(){
     noLoop();
   }
   background(51);
+
+
   if(cooldown){
     framecount += 1; //add one for each frame that passes
     framecount = framecount%(frames); //won't be 0 until framecount hits frames
@@ -111,7 +123,9 @@ function draw(){
     countdownScreen.style('z-index', -1);
   }
 
-  ship.show();
+  spr.velocity.x = ship.xdirection*5;
+  drawSprites();
+  //ship.show();
   ship.move(ship.xdirection);
 
   for(var i = 0; i < drops.length; i++){ //show the drops then move the drops
@@ -189,8 +203,6 @@ function draw(){
     victoryScreen.style('z-index', '0');
 
     gameover = true;
-    console.log(lost);
-    console.log(gameover);
     noLoop();
   }
 }
@@ -219,6 +231,7 @@ function keyPressed(){
      if(keyCode === 51){
        difficulty = 3;
      }
+     spr.remove();
      reset();
   }
 
@@ -233,6 +246,7 @@ function keyPressed(){
     if(keyCode === 51){
       difficulty = 3;
     }
+    spr.remove();
     reset();
   }
 
