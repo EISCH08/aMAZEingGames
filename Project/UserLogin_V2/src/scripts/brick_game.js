@@ -6,7 +6,7 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 var ballRadius = 10;
-var paddleHeight = 10;
+var paddleHeight = 40;
 var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
@@ -18,6 +18,7 @@ var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
+var score = 0;
 
 var bricks = [];
 for(c=0; c<brickColumnCount; c++) {
@@ -40,7 +41,7 @@ function drawBricks() {
             		bricks[c][r].y = brickY;
             		ctx.beginPath();
             		ctx.rect(brickX, brickY, brickWidth, brickHeight);
-            		ctx.fillStyle = "#0095DD";
+            		ctx.fillStyle = 'black';
             		ctx.fill();
             		ctx.closePath();
 		}
@@ -68,7 +69,7 @@ function keyUpHandler(e) {
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, 10, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = 'black';
     ctx.fill();
     ctx.closePath();
 }
@@ -76,7 +77,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
+    ctx.fillStyle = 'black';
     ctx.fill();
     ctx.closePath();
 }
@@ -89,37 +90,44 @@ function collisionDetection() {
                	if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                	    dy = -dy;
                	    b.status = 0;
+		    score++;
                	}
             }
         }
     }
 }
 
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
+}
+
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBricks();
 	drawBall();
 	drawPaddle();
+	drawScore();
 	collisionDetection();
-	    	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+
+	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
        		dx = -dx;
  	}
-	if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+	if(y + dy < ballRadius) {
         	dy = -dy;
     	}
-	if(y + dy < ballRadius) {
-	    dy = -dy;
-	}
 	else if(y + dy > canvas.height-ballRadius) {
         	if(x > paddleX && x < paddleX + paddleWidth) {
         	    dy = -dy;
         	}
         	else {
-        	    alert("GAME OVER");
-        	    document.location.reload();
+        	    alert("asdf");
+		    y = 10;
         	}
     	}
-		if(rightPressed && paddleX < canvas.width-paddleWidth) {
+	if(rightPressed && paddleX < canvas.width-paddleWidth) {
         	paddleX += 7;
     	}
     	else if(leftPressed && paddleX > 0) {
