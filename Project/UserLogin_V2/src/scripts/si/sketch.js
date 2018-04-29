@@ -25,24 +25,25 @@ var player;
 
 
 function setup(){
-  createCanvas(400,400);
+  createCanvas(600,600);
   spaceShipImg = loadImage('https://image.ibb.co/fTfhDc/Spaceship.png');
 
 
   victoryScreen = createElement('h1', 'You Win! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  victoryScreen.position(70, 80);
+  victoryScreen.position(260, 80);
   victoryScreen.style('z-index', '-1');
 
   deathScreen = createElement('h1', 'You Lost! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  deathScreen.position(70, 60);
+  deathScreen.position(260, 120);
   deathScreen.style('z-index', '-1');
 
   countdownScreen = createElement('h1', '5');
-  countdownScreen.position(195, 150);
+  countdownScreen.position(500, 250);
   countdownScreen.style('z-index', '-1');
+  countdownScreen.style('color', 'white');
 
   startScreen = createElement('h1', 'Use the left and right arrow<br> keys to move <br><br> Press the space bar to shoot<br> at most 1 shot per second <br> <br> Press Enter to start!')
-  startScreen.position(0, 50);
+  startScreen.position(260, 150);
   startScreen.style('color', 'red');
   startScreen.style('background-color', 'black');
 
