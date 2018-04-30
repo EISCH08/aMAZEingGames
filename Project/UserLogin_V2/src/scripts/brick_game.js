@@ -11,6 +11,9 @@ var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
+var leftCount = 0;
+var rightCount = 0;
+var shiftPressed = 0;
 var brickRowCount = 3;
 var brickColumnCount = 5;
 var brickWidth = 75;
@@ -30,6 +33,7 @@ for(c=0; c<brickColumnCount; c++) {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("shift", keyShiftHandler, false);
 
 function drawBricks() {
     for(c=0; c<brickColumnCount; c++) {
@@ -52,9 +56,11 @@ function drawBricks() {
 function keyDownHandler(e) {
     if(e.keyCode == 39) {
         rightPressed = true;
+	rightCount++;
     }
     else if(e.keyCode == 37) {
         leftPressed = true;
+	leftCount++;
     }
 }
 function keyUpHandler(e) {
@@ -66,6 +72,15 @@ function keyUpHandler(e) {
     }
 }
 
+function keyShiftHandler(e) {
+    if(e.keyCode == 16) {
+	shiftPressed++;
+    }
+    else if(e.keyCode == 37) {
+	shiftPressed = false;
+    }
+}
+	
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, 10, 0, Math.PI*2);
@@ -111,6 +126,7 @@ function reset() {
 	dy = -2;
 	brickRowCount = 3;
 	brickColumnCount = 5;
+	document.getElementById('output').innerHTML = score;
 	score = 0;
 	bricks = [];
 	for(c=0; c<brickColumnCount; c++) {
@@ -119,11 +135,16 @@ function reset() {
 	        bricks[c][r] = { x: 0, y: 0, status: 1 };
 	    }
 	}
+   if (leftCount > 0 || rightCount > 0) {
+	drawPaddle();
 	drawBricks();
 	drawBall();
-	drawPaddle();
 	drawScore();
 	collisionDetection();
+   }
+   else {
+	shiftPressed = false;
+   }
 
 }
 
@@ -134,7 +155,7 @@ function draw() {
 	drawPaddle();
 	drawScore();
 	collisionDetection();
-
+	if (leftCount > 0 || rightCount > 0){
 	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
        		dx = -dx;
  	}
@@ -146,6 +167,8 @@ function draw() {
         	    dy = -dy;
         	}
         	else {
+		    leftCount = 0;
+		    rightCount = 0;
         	    reset();
         	}
     	}
@@ -157,6 +180,10 @@ function draw() {
     	}
     x += dx;
     y += dy;
+	}
+	else {
+		shiftPressed = false;
+	}
 }
 
 setInterval(draw, 10);
