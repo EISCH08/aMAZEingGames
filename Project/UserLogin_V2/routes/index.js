@@ -18,74 +18,46 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
 
 	const db = require('../db.js'); 
-	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC";
+	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC; SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Maze ";
 	db.query (sql, function(err,result)
 		{
 			if(err) throw err;
-			console.log(result);
-			if (result[2]!=null) {
-				user1 = result[0].Username;
-			user1 = user1.toUpperCase();
-			user2 = result[1].Username;
-			user2 = user2.toUpperCase();
-			user3 = result[2].Username;
-			user3 = user3.toUpperCase();
-
-			score1 = result[0].Snake;
-			score2 = result[1].Snake;
-			score3 = result[2].Snake;
-
-			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
-				score2: score2, score3, score3});
-			}
-			else if (result[1]!=null && result[2] == null) {
-			user1 = result[0].Username;
-			user1 = user1.toUpperCase();
-			user2 = result[1].Username;
-			user2 = user2.toUpperCase();
-			user3 = 'NaN';
-
-			score1 = result[0].Snake;
-			score2 = result[1].Snake;
-			score3 = 0;
-
-			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
-				score2: score2, score3, score3});
-			}
-			else if(result[0]!=null && result[1]==null ){
-			user1 = result[0].Username;
-			user1 = user1.toUpperCase();
-			user2 = 'NaN';
-			user3 = 'NaN';
-
-			score1 = result[0].Snake;
-			score2 = 0;
-			score3 = 0;
-
-			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
-				score2: score2, score3, score3});
-			}
-			else{
-			user1 = 'NaN';
-			user2 = 'NaN';
-			user3 = 'NaN';
-
-			score1 = 0;
-			score2 = 0;
-			score3 = 0;
-
-			res.render('home', { title: 'aMAZEing Games Home Page',user1:  user1, user2:user2, user3:user3 ,score1: score1, 
-				score2: score2, score3, score3});
-		}
-
-
-
+			console.log(result[1][1].Username);
 			
+			userS1 = result[0][0].Username;
+			userS1 = userS1.toUpperCase();
+			userS2 = result[0][1].Username;
+			userS2 = userS2.toUpperCase();
+			userS3 = result[0][2].Username;
+			userS3 = userS3.toUpperCase();
+
+			scoreS1 = result[0][0].Snake;
+			scoreS2 = result[0][1].Snake;
+			scoreS3 = result[0][2].Snake;
+
+			userM1 = result[1][0].Username;
+			userM1 = userM1.toUpperCase();
+			userM2 = result[1][1].Username;
+			userM2 = userM2.toUpperCase();
+			userM3 = result[1][2].Username;
+			userM3 = userM3.toUpperCase();
+
+			scoreM1 = result[1][0].Maze;
+			scoreM2 = result[1][1].Maze;
+			scoreM3 = result[1][2].Maze;
+
+			res.render('home', { title: 'aMAZEing Games Home Page',userS1:  userS1, userS2:userS2, userS3:userS3 ,scoreS1: scoreS1, 
+				scoreS2: scoreS2, scoreS3, scoreS3, userM1:  userM1, userM2:userM2, userM3:userM3 ,scoreM1: scoreM1, 
+				scoreM2: scoreM2, scoreM3, scoreM3});
 			
-			
+		
+	
 		});
-  
 });
+
+
+			
+	
 
 //Get the score for the SNAKE game
 //NOT WORKING CURRENTLY
