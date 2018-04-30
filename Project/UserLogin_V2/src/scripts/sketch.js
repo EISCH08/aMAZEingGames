@@ -1,5 +1,5 @@
 var s;
-var sizeScale = 25;
+var sizeScale = 50;
 var speedScale = sizeScale;
 
 var apple; //food image to load
@@ -16,7 +16,7 @@ var exportBox; //textbox to transfer to SQL
 var exportButton;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
   player = 0;
   ready = true;
 
@@ -24,22 +24,25 @@ function setup() {
   apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
   //fetching input element from html and setting up style
   exportBox = select('#output')
-  exportBox.style('position', 'absolute');
-  exportBox.style('top', '300px');
-  exportBox.style('left', '300px');
+  //exportBox.style('position', 'absolute');
+  //exportBox.style('top', '300px');
+  //exportBox.style('left', '300px');
   exportBox.style('z-index', '-1'); //hiding input box
+  exportBox.position(550, 400);
   //fetching submit button from html
   exportButton = select('#submit');
-  exportButton.style('position', 'absolute');
-  exportButton.style('top', '140%');
-  exportButton.style('left', '80%');
+  //exportButton.style('position', 'absolute');
+  //exportButton.style('top', '140%');
+  //exportButton.style('left', '80%');
   exportButton.style('z-index', '-1'); //hiding button
+  exportButton.position(550, 400);
 
   scoreCounter = createElement('h1', 'Snake Length: ' + 1);
+  scoreCounter.style('font-size', '40pt');
   //scoreCounter.position(100, '90%');
   scoreCounter.style('position', 'absolute');
-  scoreCounter.style('top', '22%');
-  scoreCounter.style('left', '69%');
+  scoreCounter.style('top', '150px');
+  scoreCounter.style('left', '1400px');
 
   reset();
 }
@@ -47,10 +50,11 @@ function setup() {
 function reset(){
   score = 1;
 
-  startScreen = createElement(); //'h1', 'Use the arrow keys to control your snake!<br>Press the SHIFT key to start!'
-  startScreen.position(50, 100);
+  startScreen = createElement('h1', 'Use the arrow keys to<br> control your snake!<br><br>Press the SHIFT key to start!'); //
+  startScreen.position(625, 150);
+  startScreen.style('font-size', '40pt');
   startScreen.style('background-color', 'black');
-  startScreen.style('color', 'brown');
+  startScreen.style('color', '#2874A6');
 
   bg = loadImage('https://image.ibb.co/hDDeeH/topsoil_grande.jpg');
   apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
@@ -84,8 +88,9 @@ function draw() {
     player = 0;
     deathScreen = createElement('h1', 'You Lose! Your score is ' + score +'!<br> Submit your score below or<br>Press Enter to play again.');
     deathScreen.style('background-color', 'black');
-    deathScreen.style('color', 'brown');
-    deathScreen.position(125, 100);
+    deathScreen.style('color', '#2874A6');
+    deathScreen.position(625, 150);
+    deathScreen.style('font-size', '40pt');
     exportBox.value(score);
     exportButton.style('z-index', '0'); //hiding button
     spr.remove();

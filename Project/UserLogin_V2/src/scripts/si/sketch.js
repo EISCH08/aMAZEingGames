@@ -30,20 +30,22 @@ function setup(){
 
 
   victoryScreen = createElement('h1', 'You Win! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  victoryScreen.position(260, 80);
+  victoryScreen.position(750, 90);
   victoryScreen.style('z-index', '-1');
+  victoryScreen.style('color','white');
 
   deathScreen = createElement('h1', 'You Lost! <br><br> Press 1 for Easy <br> Press 2 for Medium <br> Press 3 for Hard');
-  deathScreen.position(260, 120);
+  deathScreen.position(750, 130);
   deathScreen.style('z-index', '-1');
+  deathScreen.style('color', 'white');
 
   countdownScreen = createElement('h1', '5');
-  countdownScreen.position(500, 250);
+  countdownScreen.position(900, 250);
   countdownScreen.style('z-index', '-1');
   countdownScreen.style('color', 'white');
 
   startScreen = createElement('h1', 'Use the left and right arrow<br> keys to move <br><br> Press the space bar to shoot<br> at most 1 shot per second <br> <br> Press Enter to start!')
-  startScreen.position(260, 150);
+  startScreen.position(700, 150);
   startScreen.style('color', 'red');
   startScreen.style('background-color', 'black');
 
