@@ -18,11 +18,11 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
 
 	const db = require('../db.js'); 
-	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC; SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Maze ";
+	var sql = "SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Snake DESC; SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY Maze; SELECT * FROM HighScores INNER JOIN users ON users.UserID = HighScores.UserID ORDER BY SpaceInvaders DESC ";
 	db.query (sql, function(err,result)
 		{
 			if(err) throw err;
-			console.log(result[1][1].Username);
+			console.log(result[2][0].SpaceInvaders);
 			
 			userS1 = result[0][0].Username;
 			userS1 = userS1.toUpperCase();
@@ -46,9 +46,21 @@ router.get('/', function(req, res, next) {
 			scoreM2 = result[1][1].Maze;
 			scoreM3 = result[1][2].Maze;
 
+			userB1 = result[2][0].Username;
+			userB1 = userB1.toUpperCase();
+			userB2 = result[2][1].Username;
+			userB2 = userB2.toUpperCase();
+			userB3 = result[2][2].Username;
+			userB3 = userB3.toUpperCase();
+
+			scoreB1 = result[2][0].SpaceInvaders;
+			scoreB2 = result[2][1].SpaceInvaders;
+			scoreB3 = result[2][2].SpaceInvaders;
+
 			res.render('home', { title: 'aMAZEing Games Home Page',userS1:  userS1, userS2:userS2, userS3:userS3 ,scoreS1: scoreS1, 
 				scoreS2: scoreS2, scoreS3, scoreS3, userM1:  userM1, userM2:userM2, userM3:userM3 ,scoreM1: scoreM1, 
-				scoreM2: scoreM2, scoreM3, scoreM3});
+				scoreM2: scoreM2, scoreM3, scoreM3, userB1:  userB1, userB2:userB2, userB3:userB3 ,scoreB1: scoreB1, 
+				scoreB2: scoreB2, scoreB3, scoreB3});
 			
 		
 	
@@ -125,6 +137,28 @@ router.post('/save-score/Maze', function(req, res, next) {
 		//can change this code to work for any of the games you want to add
 		const db = require('../db.js');
 		var sql = "UPDATE HighScores SET Maze =" + current_score +" WHERE UserID = '"+current_user+"' AND Maze > " + current_score + "" ;
+		db.query (sql, function(err,result)
+		{
+			if(err) throw err;
+			console.log("score added");
+		});
+	}
+  res.redirect('/');
+});
+
+router.post('/save-score/Brick', function(req, res, next) {
+	//gets the user id --> print out to make sure maybe?
+	current_user = req.user.userTag;
+	console.log(typeof current_user);
+	//gets the score the user just submitted after playing the game
+	var current_score = parseInt(req.body.id);
+	if(req.isAuthenticated()){
+		
+		console.log('User is: ', current_user);
+		// DB CALL to insert the score (current_score) into a database
+		//can change this code to work for any of the games you want to add
+		const db = require('../db.js');
+		var sql = "UPDATE HighScores SET SpaceInvaders =" + current_score +" WHERE UserID = '"+current_user+"' AND SpaceInvaders < " + current_score + "" ;
 		db.query (sql, function(err,result)
 		{
 			if(err) throw err;
