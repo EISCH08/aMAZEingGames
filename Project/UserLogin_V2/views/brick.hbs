@@ -24,12 +24,14 @@
   <script type="text/javascript" src="/scripts/brick_game.js" ></script>
   <br>
   <font size=5>Use the arrow keys to control the paddle! Get the highest score to win!</font>
-    <p id = "output"> </p>
   <br>
     <form action="/save-score/Brick" method = "post" />
-      <input id = "output" type = "text" name = "id" />
+      <input id = "output" type = "hidden" name = "id" />
       <input name= "" id = "submit" type = "submit" />
     </form>
+  
+  <br>
+  <br>
   </body>
 
 {{> footer-end }}

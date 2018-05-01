@@ -23,6 +23,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
 
+
 var bricks = [];
 for(c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
@@ -118,6 +119,10 @@ function drawScore() {
     ctx.fillText("Score: "+score, 8, 20);
 }
 
+function sendscore() {
+	return score;
+}
+
 function reset() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	x = canvas.width/2;
@@ -126,7 +131,7 @@ function reset() {
 	dy = -2;
 	brickRowCount = 3;
 	brickColumnCount = 5;
-	document.getElementById('output').innerHTML = score;
+	document.getElementById("output").value = sendscore();
 	score = 0;
 	bricks = [];
 	for(c=0; c<brickColumnCount; c++) {
@@ -155,34 +160,52 @@ function draw() {
 	drawPaddle();
 	drawScore();
 	collisionDetection();
-	if (leftCount > 0 || rightCount > 0){
-	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-       		dx = -dx;
- 	}
-	if(y + dy < ballRadius) {
-        	dy = -dy;
-    	}
-	else if(y + dy > canvas.height-ballRadius) {
-        	if(x > paddleX && x < paddleX + paddleWidth) {
-        	    dy = -dy;
-        	}
-        	else {
-		    leftCount = 0;
-		    rightCount = 0;
-        	    reset();
-        	}
-    	}
-	if(rightPressed && paddleX < canvas.width-paddleWidth) {
-        	paddleX += 7;
-    	}
-    	else if(leftPressed && paddleX > 0) {
-        	paddleX -= 7;
-    	}
-    x += dx;
-    y += dy;
+	if (score < 15) {
+
+	if (leftCount > 0 || rightCount > 0)
+	{
+		if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) 
+		{
+       			dx = -dx;
+ 		}
+		if(y + dy < ballRadius) 
+		{
+        		dy = -dy;
+    		}
+		else if(y + dy > canvas.height-ballRadius) 
+		{
+        		if(x > paddleX && x < paddleX + paddleWidth) 
+			{
+        		    dy = -dy;
+        		}
+        		else 
+			{
+		    		leftCount = 0;
+		    		rightCount = 0;
+        	    		reset();
+        		}
+    		}
+		if(rightPressed && paddleX < canvas.width-paddleWidth) 
+		{
+        		paddleX += 7;
+    		}
+    		else if(leftPressed && paddleX > 0) 
+		{
+        		paddleX -= 7;
+    		}
+    		x += dx;
+    		y += dy;
 	}
-	else {
+	else 
+	{
 		shiftPressed = false;
+	}
+	}
+	else
+	{
+	    leftCount = 0;
+  	    rightCount = 0;
+	    reset();
 	}
 }
 
