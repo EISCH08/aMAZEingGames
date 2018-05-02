@@ -8,3 +8,5 @@ Group Members:
 - Parker Eischen
 - Adam Casey
 - Sol Pazos
+
+*To run the project:* Follow the instructions in the README in the /Project/UserLogin_V2/ directory.
