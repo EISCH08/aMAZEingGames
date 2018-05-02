@@ -77,6 +77,7 @@ function Cell(i, j){ //i is the column, j is the row
       var x = this.x*size1; //ie co1 2 will net an x position of 2 times the size of each square (putting it in the second square on the grid)
       var y = this.y*size1; //same here
       stroke(255);
+      strokeWeight(3);
 
       if(this.walls[0]){
          line(x,y, x+size1, y);//top
