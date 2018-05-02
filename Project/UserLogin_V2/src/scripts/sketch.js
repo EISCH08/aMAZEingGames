@@ -21,7 +21,7 @@ function setup() {
   ready = true;
 
   bg = loadImage('https://image.ibb.co/hDDeeH/topsoil_grande.jpg');
-  apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
+  apple = loadImage('https://image.ibb.co/cCQTES/Shiny_Red_Apple_64x64.png');
   //fetching input element from html and setting up style
   exportBox = select('#output')
   //exportBox.style('position', 'absolute');
@@ -57,7 +57,7 @@ function reset(){
   startScreen.style('color', '#2874A6');
 
   bg = loadImage('https://image.ibb.co/hDDeeH/topsoil_grande.jpg');
-  apple = loadImage('https://image.ibb.co/eeMhzH/Shiny_Red_Apple_48x48.png');
+  apple = loadImage('https://image.ibb.co/cCQTES/Shiny_Red_Apple_64x64.png');
   s = new Snake();
   frameRate(15);
   spawnFood();
@@ -69,7 +69,7 @@ function spawnFood() {
   var rows = floor(height/sizeScale);
   food = createVector(floor(random(cols)), floor(random(rows)));
   food.mult(sizeScale);
-  spr = createSprite(food.x + 10, food.y, 40, 40); //spawn the sprite
+  spr = createSprite(food.x + sizeScale/2, food.y + sizeScale/2, 40, 40); //spawn the sprite
   spr.addImage(apple);
 }
 
