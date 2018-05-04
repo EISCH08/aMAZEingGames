@@ -77,4 +77,9 @@ DB_NAME=your_DB_name
 6. If everything is working, a new tab will open in your browser to display the page.
 
 
+**To test games:**
+1. Locate the `/Project/Login/src/scripts` folder
+2. cd to either jasmine_snakegame or jasmine_mazegame
+3. Run SpecRunner.html
+
 Note: Tutorial for new-user registration and authentication comes from [these videos](https://www.youtube.com/watch?v=gYjHDMPrkWU&list=PLpPnRKq7eNW3Qm2OfoJ3Hyvf-36TulLDp) by Chris Courses
